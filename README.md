@@ -7,7 +7,7 @@ Abaixo, seguem as stacks aplicadas ao projeto:
 
 FRONTEND
 
-- Flutterflow - Será todo desenvolvido em plataforma lowcode, permitindo agilidade no seu desenvolvimento
+- Flutterflow - Será todo desenvolvido em plataforma lowcode, em parceria com Alexandre Gois, permitindo agilidade no seu desenvolvimento
 
 BACKEND
 
