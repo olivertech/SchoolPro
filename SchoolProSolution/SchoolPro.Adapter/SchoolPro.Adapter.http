@@ -1,0 +1,6 @@
+@SchoolPro.Adapter_HostAddress = http://localhost:5136
+
+GET {{SchoolPro.Adapter_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
