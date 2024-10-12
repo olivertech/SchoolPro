@@ -1,0 +1,21 @@
+﻿version: "3"
+services:
+    db:
+        container_name: schoolpro_db
+        image: postgres:16.2
+        environment:
+            - POSTGRES_DB=SchoolProDB
+            - POSTGRES_USER=schoolprouser
+            - POSTGRES_PASSWORD=schoolpro@pwd
+            - POSTGRES_HOST_AUTH_METHOD=trust
+        ports:
+            - 5432:5432
+        volumes:
+            - db_config_volume:/var/lib/postgresql/data
+        restart: always  
+        networks:
+            - db_schoolpro_network
+volumes: 
+    db_schoolpro_volume: 
+networks: 
+    db_schoolpro_network:
