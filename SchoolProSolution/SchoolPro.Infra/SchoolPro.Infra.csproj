@@ -10,4 +10,11 @@
     <ProjectReference Include="..\SchoolPro.Core\SchoolPro.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Context\" />
+    <Folder Include="Dependencies\" />
+    <Folder Include="EntityConfigurations\" />
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+
 </Project>

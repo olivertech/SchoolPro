@@ -14,4 +14,8 @@
     <ProjectReference Include="..\SchoolPro.Api\SchoolPro.Api.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
 </Project>
