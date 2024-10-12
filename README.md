@@ -1,22 +1,31 @@
 # SchoolPro
 Backend para sistema de gerenciamento escolar
 
-Esse projeto é baseado nas tecnologias >Net mais atuais do mercado, visando ter robustez, velocidade, confiabilidade, manutenabilidade, modularidade, permitindo que o mesmo possa crescer de maneira controlada e segura.
+Esse projeto é baseado nas tecnologias .Net mais atuais do mercado, visando ter robustez, velocidade, confiabilidade, manutenabilidade, modularidade, permitindo UM cresceMINTO controladO e seguro do projeto.
 
 Abaixo, seguem as stacks aplicadas ao projeto:
 
-Front-end
+FRONTEND
 
 - Flutterflow - Será todo desenvolvido em plataforma lowcode, permitindo agilidade no seu desenvolvimento
 
-Back-end
+BACKEND
 
-- Aspnet Core com .Net Core 8 e C#
+- Aspnet core (.Net 8) com C#
 - Entity Framework Core
 - Dapper.Net
-- Redis
-- Quartz.Net
+- Automapper
+- Fluent Validation
+- JWT Authentication
 
-Database
+BANCO DE DADOS
 
-- PostgreSql rodando em container Docker
+- PostgreSql rodando em containers, com isolamento a nível de banco de dados
+- Migrations com Code-First
+
+INFRA
+
+- Swagger
+- Docker
+- Quartz.net
+- NLog
