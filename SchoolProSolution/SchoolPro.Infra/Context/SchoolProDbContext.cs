@@ -1,12 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
+using SchoolPro.Core.Entities;
+using System.Reflection;
 
 namespace SchoolPro.Infra.Context
 {
-    internal class SchoolProDbContext
+    public class SchoolProDbContext : DbContext
     {
+        public SchoolProDbContext(DbContextOptions<SchoolProDbContext> options)
+            : base(options)
+        {
+        }
+
+        public DbSet<Student> Students { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<Parent> Parents { get; set; }
+        public DbSet<School> Schools { get; set; }
+        public DbSet<Room> Rooms { get; set; }
+
+        /// <summary>
+        /// Faz referencia as classes de configurações das entidades
+        /// </summary>
+        /// <param name="modelBuilder"></param>
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        }
     }
 }

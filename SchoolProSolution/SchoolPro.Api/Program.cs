@@ -9,10 +9,27 @@ namespace SchoolPro.Api
 
             // Add services to the container.
 
-            builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            //===============================
+            // Add services to the container
+            //===============================
+            builder.Services
+                .AddEndpointsApiExplorer()
+                .AddSwaggerGen()
+                .AddAutoMapper(typeof(Program))
+                .AddControllers();
+
+            //=============================
+            // Referenciando o appsettings
+            //=============================
+            IConfiguration config = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json", false, true)
+                .AddEnvironmentVariables()
+                .Build();
+
+            //============================
+            // Add Injection Dependencies
+            //============================
+            builder.Services.AddRepositoryDependenciesInjection(builder.Configuration);
 
             var app = builder.Build();
 
@@ -21,6 +38,7 @@ namespace SchoolPro.Api
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
+                app.UseDeveloperExceptionPage();
             }
 
             app.UseHttpsRedirection();
