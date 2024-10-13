@@ -5,6 +5,7 @@
         public void Configure(EntityTypeBuilder<StudentParent> builder)
         {
             //Common columns
+            builder.Property(x => x.IsActive).HasColumnName("is_active").IsRequired().HasDefaultValue(true);
             builder.Property(x => x.SchoolKey).HasColumnName("school_key");
 
             //Entity columns
@@ -26,6 +27,9 @@
                   .HasColumnName("parent_id");
 
             builder.ToTable("Student_Parent");
+
+            //Global filter
+            builder.HasQueryFilter(x => x.IsActive);
         }
     }
 }

@@ -1,10 +1,8 @@
-﻿using SchoolPro.Core.Entities.Base;
-
-namespace SchoolPro.Core.Entities
+﻿namespace SchoolPro.Core.Entities
 {
     /// <summary>
-    /// Classe que armazena todos os endereços associados
-    /// a alunos, responsáveis, escolas
+    /// Entidade que armazena todos os endereços associados
+    /// a alunos, responsáveis, escolas e professores
     /// </summary>
     public class Address : EntityBase
     {

@@ -1,15 +1,13 @@
-﻿using SchoolPro.Core.Entities.Base;
-
-namespace SchoolPro.Core.Entities
+﻿namespace SchoolPro.Core.Entities
 {
     /// <summary>
-    /// Classe que armazena os dados das
-    /// salas de aula
+    /// Entidade que armazena os dados de uma sala de aula
     /// </summary>
     public class Room : EntityBase
     {
         public string Name { get; set; } = null!;
         public string? Description { get; set; }
+        public int Capacity { get; set; }
 
         //Navigation Property
         public Guid? SchoolId { get; set; }

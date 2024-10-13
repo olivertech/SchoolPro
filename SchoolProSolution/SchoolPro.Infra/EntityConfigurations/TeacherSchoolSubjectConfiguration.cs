@@ -5,6 +5,7 @@
         public void Configure(EntityTypeBuilder<TeacherSchoolSubject> builder)
         {
             //Common columns
+            builder.Property(x => x.IsActive).HasColumnName("is_active").IsRequired().HasDefaultValue(true);
             builder.Property(x => x.SchoolKey).HasColumnName("school_key");
 
             //Entity columns
@@ -25,6 +26,9 @@
                 .HasColumnName("school_subject_id");
 
             builder.ToTable("Teacher_School_Subject");
+
+            //Global filter
+            builder.HasQueryFilter(x => x.IsActive);
         }
     }
 }

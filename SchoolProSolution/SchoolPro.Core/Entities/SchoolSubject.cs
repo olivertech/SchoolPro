@@ -2,6 +2,9 @@
 
 namespace SchoolPro.Core.Entities
 {
+    /// <summary>
+    /// Ebtidade que armazena os dados de uma matéria
+    /// </summary>
     public class SchoolSubject : EntityBase
     {
         public string Title { get; set; } = null!;

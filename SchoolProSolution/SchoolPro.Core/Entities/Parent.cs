@@ -1,9 +1,7 @@
-﻿using SchoolPro.Core.Entities.Base;
-
-namespace SchoolPro.Core.Entities
+﻿namespace SchoolPro.Core.Entities
 {
     /// <summary>
-    /// Classe que armazena os dados dos responsáveis
+    /// Entidade que armazena os dados dos responsáveis
     /// pelo aluno, e o seu grau de parentesco
     /// </summary>
     public class Parent : EntityBase

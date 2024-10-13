@@ -1,7 +1,9 @@
-﻿using SchoolPro.Core.Entities.Base;
-
-namespace SchoolPro.Core.Entities
+﻿namespace SchoolPro.Core.Entities
 {
+    /// <summary>
+    /// Entidade que armazena todos os documentos associados
+    /// a alunos, parentes, escolas e professores
+    /// </summary>
     public class Document : EntityBase
     {
         public string? Title { get; set; } = null!;

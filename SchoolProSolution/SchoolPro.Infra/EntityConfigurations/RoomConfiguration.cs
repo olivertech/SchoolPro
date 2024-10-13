@@ -17,7 +17,8 @@
             //Entity columns
             builder.Property(x => x.Id).HasColumnName("Id").HasValueGenerator<GuidValueGenerator>();
             builder.Property(x => x.Name).HasColumnName("name").HasMaxLength(50).IsRequired();
-            builder.Property(x => x.Description).HasColumnName("description").HasMaxLength(500).IsRequired();
+            builder.Property(x => x.Description).HasColumnName("description").HasMaxLength(500).IsRequired(false);
+            builder.Property(x => x.Capacity).HasColumnName("capacity");
             builder.Property(x => x.SchoolId).HasColumnName("school_id");
 
             builder.ToTable("Room");

@@ -3,8 +3,7 @@
 namespace SchoolPro.Core.Entities
 {
     /// <summary>
-    /// Classe que armazena os dados da
-    /// escola
+    /// Entidade que armazena os dados de uma escola
     /// </summary>
     public class School : EntityBase
     {
