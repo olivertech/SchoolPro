@@ -5,26 +5,26 @@
         public void Configure(EntityTypeBuilder<TeacherSchoolSubject> builder)
         {
             //Common columns
-            builder.Property(x => x.IsActive).HasColumnName("is_active").IsRequired().HasDefaultValue(true);
-            builder.Property(x => x.CreatedAt).HasColumnName("created_at");
-            builder.Property(x => x.UpdatedAt).HasColumnName("updated_at");
-            builder.Property(x => x.DeletedAt).HasColumnName("deleted_at");
+            builder.Property(x => x.SchoolKey).HasColumnName("school_key");
 
             //Entity columns
             builder.HasKey(x => new { x.SchoolSubjectId, x.TeacherId });
 
-            builder.HasOne(nu => nu.Teacher)
+            builder.HasOne(x => x.Teacher)
                 .WithMany(x => x.TeacherSchoolSubjects)
-                .HasForeignKey(ur => ur.TeacherId).HasConstraintName("teacher_Id");
+                .HasForeignKey(x => x.TeacherId).HasConstraintName("teacher_Id");
 
             builder.HasOne(x => x.SchoolSubject)
                 .WithMany(x => x.TeacherSchoolSubjects)
                 .HasForeignKey(x => x.SchoolSubjectId).HasConstraintName("school_subject_Id");
 
-            builder.ToTable("Teacher_School_Subject");
+            builder.Property(o => o.TeacherId)
+                .HasColumnName("teacher_id");
 
-            //Global filter
-            builder.HasQueryFilter(x => x.IsActive);
+            builder.Property(o => o.SchoolSubjectId)
+                .HasColumnName("school_subject_id");
+
+            builder.ToTable("Teacher_School_Subject");
         }
     }
 }

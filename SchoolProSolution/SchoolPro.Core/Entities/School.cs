@@ -12,6 +12,7 @@ namespace SchoolPro.Core.Entities
         public string? Description { get; set; }
 
         //Navigation Property
+        public Guid? AddressId { get; set; }
         public Address? Address { get; set; }
         public IList<Document>? Documents { get; set; }
     }

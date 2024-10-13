@@ -2,7 +2,7 @@
 
 namespace SchoolPro.Core.Entities
 {
-    public class StudentParent : EntityBase
+    public class StudentParent : RelationBase
     {
         public Guid? StudentId { get; set; }
         public Student? Student { get; set; }

@@ -9,6 +9,7 @@ namespace SchoolPro.Core.Entities
         public string Gender { get; set; } = null!;
 
         //Navigation Property
+        public Guid? AddressId { get; set; }
         public Address? Address { get; set; }
 
         //One-To-many

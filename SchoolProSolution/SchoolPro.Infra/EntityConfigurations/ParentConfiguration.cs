@@ -10,12 +10,15 @@
             builder.Property(x => x.CreatedAt).HasColumnName("created_at");
             builder.Property(x => x.UpdatedAt).HasColumnName("updated_at");
             builder.Property(x => x.DeletedAt).HasColumnName("deleted_at");
+            builder.Property(x => x.SchoolKey).HasColumnName("school_key");
+
+            builder.Property(x => x.Id).HasColumnName("id");
 
             //Entity columns
             builder.Property(x => x.Id).HasColumnName("Id").HasValueGenerator<GuidValueGenerator>();
             builder.Property(x => x.Name).HasColumnName("name").HasMaxLength(50).IsRequired();
-            builder.Property(x => x.Birthdate).HasColumnName("birthdate");
-            builder.Property(x => x.Gender).HasColumnName("gender").HasMaxLength(1);
+            builder.Property(x => x.Birthdate).HasColumnName("birthdate").IsRequired(false);
+            builder.Property(x => x.Gender).HasColumnName("gender").HasMaxLength(1).IsRequired(false);
             builder.Property(x => x.Kinship).HasColumnName("kinship").HasMaxLength(50);
             builder.Property(x => x.AddressId).HasColumnName("address_id");
 

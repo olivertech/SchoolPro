@@ -2,7 +2,7 @@
 
 namespace SchoolPro.Core.Entities
 {
-    public class TeacherSchoolSubject : EntityBase
+    public class TeacherSchoolSubject : RelationBase
     {
         //Navigation Property
         public Guid? TeacherId { get; set; }

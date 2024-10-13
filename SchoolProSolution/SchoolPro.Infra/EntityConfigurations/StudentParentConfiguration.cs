@@ -1,20 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-namespace SchoolPro.Infra.EntityConfigurations
+﻿namespace SchoolPro.Infra.EntityConfigurations
 {
     public class StudentParentConfiguration : IEntityTypeConfiguration<StudentParent>
     {
         public void Configure(EntityTypeBuilder<StudentParent> builder)
         {
             //Common columns
-            builder.HasKey(x => x.Id);
-            builder.Property(x => x.IsActive).HasColumnName("is_active").IsRequired().HasDefaultValue(true);
-            builder.Property(x => x.CreatedAt).HasColumnName("created_at");
-            builder.Property(x => x.UpdatedAt).HasColumnName("updated_at");
-            builder.Property(x => x.DeletedAt).HasColumnName("deleted_at");
+            builder.Property(x => x.SchoolKey).HasColumnName("school_key");
 
             //Entity columns
-            builder.Property(x => x.Id).HasColumnName("Id").HasValueGenerator<GuidValueGenerator>();
+            builder.HasKey(x => new { x.StudentId, x.ParentId});
 
             //Relationship One-To-Many
             builder.HasOne(sp => sp.Student)
@@ -25,10 +19,13 @@ namespace SchoolPro.Infra.EntityConfigurations
                    .WithMany(p => p.StudentParents)
                    .HasForeignKey(sp => sp.ParentId).HasConstraintName("parent_id");
 
-            builder.ToTable("StudentParent");
+            builder.Property(o => o.StudentId)
+                   .HasColumnName("student_id");
 
-            //Global filter
-            builder.HasQueryFilter(x => x.IsActive);
+            builder.Property(o => o.ParentId)
+                  .HasColumnName("parent_id");
+
+            builder.ToTable("Student_Parent");
         }
     }
 }

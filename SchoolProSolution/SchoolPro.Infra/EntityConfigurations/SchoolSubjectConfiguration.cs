@@ -10,11 +10,16 @@
             builder.Property(x => x.CreatedAt).HasColumnName("created_at");
             builder.Property(x => x.UpdatedAt).HasColumnName("updated_at");
             builder.Property(x => x.DeletedAt).HasColumnName("deleted_at");
+            builder.Property(x => x.SchoolKey).HasColumnName("school_key");
+
+            builder.Property(x => x.Id).HasColumnName("id");
 
             //Entity columns
             builder.Property(x => x.Id).HasColumnName("Id").HasValueGenerator<GuidValueGenerator>();
+            builder.Property(x => x.Title).HasColumnName("title").HasMaxLength(50).IsRequired();
+            builder.Property(x => x.Description).HasColumnName("description").HasMaxLength(500).IsRequired(false);
 
-            builder.ToTable("SchoolSubject");
+            builder.ToTable("School_Subject");
 
             //Global filter
             builder.HasQueryFilter(x => x.IsActive);

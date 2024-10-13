@@ -9,8 +9,10 @@ namespace SchoolPro.Core.Entities
     public class Room : EntityBase
     {
         public string Name { get; set; } = null!;
+        public string? Description { get; set; }
 
         //Navigation Property
+        public Guid? SchoolId { get; set; }
         public School? School { get; set; }
     }
 }
