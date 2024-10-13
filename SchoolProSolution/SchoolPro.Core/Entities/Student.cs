@@ -10,5 +10,9 @@ namespace SchoolPro.Core.Entities
 
         //Navigation Property
         public Address? Address { get; set; }
+
+        //One-To-many
+        public IList<Document>? Documents { get; set; }
+        public IList<StudentParent>? StudentParents { get; set; }
     }
 }

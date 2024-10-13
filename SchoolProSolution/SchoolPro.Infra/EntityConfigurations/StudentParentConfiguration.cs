@@ -1,8 +1,10 @@
-﻿namespace SchoolPro.Infra.EntityConfigurations
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace SchoolPro.Infra.EntityConfigurations
 {
-    public class StudentConfiguration : IEntityTypeConfiguration<Student>
+    public class StudentParentConfiguration : IEntityTypeConfiguration<StudentParent>
     {
-        public void Configure(EntityTypeBuilder<Student> builder)
+        public void Configure(EntityTypeBuilder<StudentParent> builder)
         {
             //Common columns
             builder.HasKey(x => x.Id);
@@ -13,16 +15,17 @@
 
             //Entity columns
             builder.Property(x => x.Id).HasColumnName("Id").HasValueGenerator<GuidValueGenerator>();
-            builder.Property(x => x.Name).HasColumnName("name").HasMaxLength(50).IsRequired();
-            builder.Property(x => x.Birthdate).HasColumnName("birthdate");
-            builder.Property(x => x.Gender).HasColumnName("gender").HasMaxLength(1);
 
             //Relationship One-To-Many
-            builder.HasMany(d => d.Documents)
-                .WithOne(d => d.Student)
-                .HasForeignKey(d => d.StudentId).HasConstraintName("student_Id");
+            builder.HasOne(sp => sp.Student)
+                   .WithMany(s => s.StudentParents)
+                   .HasForeignKey(sp => sp.StudentId).HasConstraintName("student_id");
 
-            builder.ToTable("Student");
+            builder.HasOne(sp => sp.Parent)
+                   .WithMany(p => p.StudentParents)
+                   .HasForeignKey(sp => sp.ParentId).HasConstraintName("parent_id");
+
+            builder.ToTable("StudentParent");
 
             //Global filter
             builder.HasQueryFilter(x => x.IsActive);

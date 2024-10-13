@@ -1,9 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore.ValueGeneration;
-using Microsoft.EntityFrameworkCore;
-using SchoolPro.Core.Entities;
-
-namespace SchoolPro.Infra.EntityConfigurations
+﻿namespace SchoolPro.Infra.EntityConfigurations
 {
     public class RoomConfiguration : IEntityTypeConfiguration<Room>
     {

@@ -1,8 +1,8 @@
 ﻿namespace SchoolPro.Infra.EntityConfigurations
 {
-    public class StudentConfiguration : IEntityTypeConfiguration<Student>
+    public class DocumentConfiguration : IEntityTypeConfiguration<Document>
     {
-        public void Configure(EntityTypeBuilder<Student> builder)
+        public void Configure(EntityTypeBuilder<Document> builder)
         {
             //Common columns
             builder.HasKey(x => x.Id);
@@ -13,16 +13,11 @@
 
             //Entity columns
             builder.Property(x => x.Id).HasColumnName("Id").HasValueGenerator<GuidValueGenerator>();
-            builder.Property(x => x.Name).HasColumnName("name").HasMaxLength(50).IsRequired();
-            builder.Property(x => x.Birthdate).HasColumnName("birthdate");
-            builder.Property(x => x.Gender).HasColumnName("gender").HasMaxLength(1);
+            builder.Property(x => x.Title).HasColumnName("title").HasMaxLength(50).IsRequired();
+            builder.Property(x => x.Description).HasMaxLength(500).HasColumnName("description");
+            builder.Property(x => x.FilePath).HasMaxLength(500).HasColumnName("file_path").IsRequired();
 
-            //Relationship One-To-Many
-            builder.HasMany(d => d.Documents)
-                .WithOne(d => d.Student)
-                .HasForeignKey(d => d.StudentId).HasConstraintName("student_Id");
-
-            builder.ToTable("Student");
+            builder.ToTable("Document");
 
             //Global filter
             builder.HasQueryFilter(x => x.IsActive);

@@ -17,6 +17,9 @@ namespace SchoolPro.Infra.Context
         public DbSet<Parent> Parents { get; set; }
         public DbSet<School> Schools { get; set; }
         public DbSet<Room> Rooms { get; set; }
+        public DbSet<SchoolSubject> SchoolSubjects { get; set; }
+        public DbSet<TeacherSchoolSubject> TeacherSchoolSubjects { get; set; }
+        public DbSet<Document> Documents { get; set; }
 
         /// <summary>
         /// Faz referencia as classes de configurações das entidades

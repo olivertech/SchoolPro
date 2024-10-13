@@ -1,9 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore.ValueGeneration;
-using Microsoft.EntityFrameworkCore;
-using SchoolPro.Core.Entities;
-
-namespace SchoolPro.Infra.EntityConfigurations
+﻿namespace SchoolPro.Infra.EntityConfigurations
 {
     public class ParentConfiguration : IEntityTypeConfiguration<Parent>
     {
@@ -18,6 +13,16 @@ namespace SchoolPro.Infra.EntityConfigurations
 
             //Entity columns
             builder.Property(x => x.Id).HasColumnName("Id").HasValueGenerator<GuidValueGenerator>();
+            builder.Property(x => x.Name).HasColumnName("name").HasMaxLength(50).IsRequired();
+            builder.Property(x => x.Birthdate).HasColumnName("birthdate");
+            builder.Property(x => x.Gender).HasColumnName("gender").HasMaxLength(1);
+            builder.Property(x => x.Kinship).HasColumnName("kinship").HasMaxLength(50);
+            builder.Property(x => x.AddressId).HasColumnName("address_id");
+
+            //Relationship One-To-Many
+            builder.HasMany(d => d.Documents)
+                .WithOne(d => d.Parent)
+                .HasForeignKey(d => d.ParentId).HasConstraintName("parent_Id");
 
             builder.ToTable("Parent");
 

@@ -12,9 +12,11 @@ namespace SchoolPro.Core.Entities
         public DateOnly? Birthdate { get; set; }
         public string? Gender { get; set; } = null!;
         public string? Kinship { get; set; } = null!;
-        
+
         //Navigation Property
-        public Student? User { get; set; }
+        public Guid? AddressId { get; set; }
         public Address? Address { get; set; }
+        public IList<Document>? Documents { get; set; }
+        public IList<StudentParent>? StudentParents { get; set; }
     }
 }

@@ -1,9 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore.ValueGeneration;
-using Microsoft.EntityFrameworkCore;
-using SchoolPro.Core.Entities;
-
-namespace SchoolPro.Infra.EntityConfigurations
+﻿namespace SchoolPro.Infra.EntityConfigurations
 {
     public class AddressConfiguration : IEntityTypeConfiguration<Address>
     {
@@ -24,6 +19,7 @@ namespace SchoolPro.Infra.EntityConfigurations
             builder.Property(x => x.City).HasColumnName("city").HasMaxLength(250);
             builder.Property(x => x.State).HasColumnName("state").HasMaxLength(25);
             builder.Property(x => x.PostalCode).HasColumnName("postal_code").HasMaxLength(8);
+
             builder.ToTable("Address");
 
             //Global filter
