@@ -12,7 +12,7 @@ using SchoolPro.Infra.Context;
 namespace SchoolPro.Infra.Migrations
 {
     [DbContext(typeof(SchoolProDbContext))]
-    [Migration("20241017031537_Database_Init")]
+    [Migration("20241017033537_Database_Init")]
     partial class Database_Init
     {
         /// <inheritdoc />
@@ -411,11 +411,20 @@ namespace SchoolPro.Infra.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("deleted_at");
 
+                    b.Property<Guid?>("DocumentId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("document_id");
+
                     b.Property<string>("Enrollment")
                         .IsRequired()
                         .HasMaxLength(25)
                         .HasColumnType("character varying(25)")
                         .HasColumnName("enrollment");
+
+                    b.Property<string>("FinalGrade")
+                        .HasMaxLength(10)
+                        .HasColumnType("character varying(10)")
+                        .HasColumnName("final_grade");
 
                     b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
@@ -440,6 +449,8 @@ namespace SchoolPro.Infra.Migrations
                         .HasColumnName("updated_at");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DocumentId");
 
                     b.HasIndex("SchoolYearId");
 
@@ -740,7 +751,8 @@ namespace SchoolPro.Infra.Migrations
                         .HasColumnName("created_at");
 
                     b.Property<DateOnly>("DateGrade")
-                        .HasColumnType("date");
+                        .HasColumnType("date")
+                        .HasColumnName("date_grade");
 
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("timestamp with time zone")
@@ -991,6 +1003,10 @@ namespace SchoolPro.Infra.Migrations
 
             modelBuilder.Entity("SchoolPro.Core.Entities.SchoolEnrollment", b =>
                 {
+                    b.HasOne("SchoolPro.Core.Entities.Document", "Document")
+                        .WithMany()
+                        .HasForeignKey("DocumentId");
+
                     b.HasOne("SchoolPro.Core.Entities.SchoolYear", "SchoolYear")
                         .WithMany()
                         .HasForeignKey("SchoolYearId");
@@ -998,6 +1014,8 @@ namespace SchoolPro.Infra.Migrations
                     b.HasOne("SchoolPro.Core.Entities.Student", "Student")
                         .WithMany()
                         .HasForeignKey("StudentId");
+
+                    b.Navigation("Document");
 
                     b.Navigation("SchoolYear");
 

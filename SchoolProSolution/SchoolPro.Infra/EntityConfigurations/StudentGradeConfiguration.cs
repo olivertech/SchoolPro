@@ -17,6 +17,7 @@
             //Entity columns
             builder.Property(x => x.Id).HasColumnName("Id").HasValueGenerator<GuidValueGenerator>();
             builder.Property(x => x.Grade).HasColumnName("grade").IsRequired();
+            builder.Property(x => x.DateGrade).HasColumnName("date_grade").IsRequired();
 
             builder.Property(x => x.SchoolSubjectId).HasColumnName("school_subject_id").IsRequired();
             builder.Property(x => x.StudentId).HasColumnName("student_id").IsRequired();

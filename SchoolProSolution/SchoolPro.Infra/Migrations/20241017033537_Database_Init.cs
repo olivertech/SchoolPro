@@ -339,36 +339,6 @@ namespace SchoolPro.Infra.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "School_Enrollment",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    enrollment = table.Column<string>(type: "character varying(25)", maxLength: 25, nullable: false),
-                    approved = table.Column<bool>(type: "boolean", nullable: false),
-                    student_id = table.Column<Guid>(type: "uuid", nullable: true),
-                    school_year_id = table.Column<Guid>(type: "uuid", nullable: true),
-                    is_active = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
-                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    deleted_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    school_key = table.Column<Guid>(type: "uuid", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_School_Enrollment", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_School_Enrollment_School_Year_school_year_id",
-                        column: x => x.school_year_id,
-                        principalTable: "School_Year",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_School_Enrollment_Student_student_id",
-                        column: x => x.student_id,
-                        principalTable: "Student",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Student_Grade",
                 columns: table => new
                 {
@@ -376,7 +346,7 @@ namespace SchoolPro.Infra.Migrations
                     student_id = table.Column<Guid>(type: "uuid", nullable: false),
                     school_subject_id = table.Column<Guid>(type: "uuid", nullable: false),
                     grade = table.Column<decimal>(type: "numeric", nullable: false),
-                    DateGrade = table.Column<DateOnly>(type: "date", nullable: false),
+                    date_grade = table.Column<DateOnly>(type: "date", nullable: false),
                     student_class_id = table.Column<Guid>(type: "uuid", nullable: false),
                     is_active = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
                     created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
@@ -431,6 +401,43 @@ namespace SchoolPro.Infra.Migrations
                         principalTable: "Student",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "School_Enrollment",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    enrollment = table.Column<string>(type: "character varying(25)", maxLength: 25, nullable: false),
+                    approved = table.Column<bool>(type: "boolean", nullable: false),
+                    final_grade = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: true),
+                    student_id = table.Column<Guid>(type: "uuid", nullable: true),
+                    school_year_id = table.Column<Guid>(type: "uuid", nullable: true),
+                    document_id = table.Column<Guid>(type: "uuid", nullable: true),
+                    is_active = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
+                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    deleted_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    school_key = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_School_Enrollment", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_School_Enrollment_Document_document_id",
+                        column: x => x.document_id,
+                        principalTable: "Document",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_School_Enrollment_School_Year_school_year_id",
+                        column: x => x.school_year_id,
+                        principalTable: "School_Year",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_School_Enrollment_Student_student_id",
+                        column: x => x.student_id,
+                        principalTable: "Student",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -509,6 +516,11 @@ namespace SchoolPro.Infra.Migrations
                 name: "IX_School_Calendar_school_year_id",
                 table: "School_Calendar",
                 column: "school_year_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_School_Enrollment_document_id",
+                table: "School_Enrollment",
+                column: "document_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_School_Enrollment_school_year_id",
@@ -595,25 +607,25 @@ namespace SchoolPro.Infra.Migrations
                 name: "Teacher_School_Subject");
 
             migrationBuilder.DropTable(
-                name: "Document");
-
-            migrationBuilder.DropTable(
                 name: "School_Enrollment");
 
             migrationBuilder.DropTable(
                 name: "School_Subject");
 
             migrationBuilder.DropTable(
-                name: "Parent");
-
-            migrationBuilder.DropTable(
-                name: "Teacher");
+                name: "Document");
 
             migrationBuilder.DropTable(
                 name: "School_Year");
 
             migrationBuilder.DropTable(
+                name: "Parent");
+
+            migrationBuilder.DropTable(
                 name: "Student");
+
+            migrationBuilder.DropTable(
+                name: "Teacher");
 
             migrationBuilder.DropTable(
                 name: "Student_Class");
