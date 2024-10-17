@@ -1,5 +1,8 @@
 ﻿namespace SchoolPro.Core.Entities
 {
+    /// <summary>
+    /// Entidade que armazena o relacionamento do aluno com seus parentes
+    /// </summary>
     public class StudentParent : RelationBase
     {
         public Guid? StudentId { get; set; }

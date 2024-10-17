@@ -1,8 +1,8 @@
 ﻿namespace SchoolPro.Infra.EntityConfigurations
 {
-    public class StudentClassConfiguration : IEntityTypeConfiguration<StudentClass>
+    public class SchoolEnrollmentConfiguration : IEntityTypeConfiguration<SchoolEnrollment>
     {
-        public void Configure(EntityTypeBuilder<StudentClass> builder)
+        public void Configure(EntityTypeBuilder<SchoolEnrollment> builder)
         {
             //Common columns
             builder.HasKey(x => x.Id);
@@ -16,17 +16,12 @@
 
             //Entity columns
             builder.Property(x => x.Id).HasColumnName("Id").HasValueGenerator<GuidValueGenerator>();
-            builder.Property(x => x.Name).HasColumnName("name").HasMaxLength(50).IsRequired();
-            builder.Property(x => x.Description).HasColumnName("description").HasMaxLength(500).IsRequired(false);
-            builder.Property(x => x.Capacity).HasColumnName("capacity");
+            builder.Property(x => x.Enrollment).HasColumnName("enrollment").HasMaxLength(25).IsRequired();
+            builder.Property(x => x.Approved).HasColumnName("approved");
+            builder.Property(x => x.StudentId).HasColumnName("student_id");
+            builder.Property(x => x.SchoolYearId).HasColumnName("school_year_id");
 
-            builder.Property(x => x.RoomId).HasColumnName("room_id").IsRequired();
-
-            builder.HasMany(d => d.Students)
-                .WithOne(d => d.StudentClass)
-                .HasForeignKey(d => d.StudentClassId).HasConstraintName("student_class_Id");
-
-            builder.ToTable("Student_Class");
+            builder.ToTable("School_Enrollment");
 
             //Global filter
             builder.HasQueryFilter(x => x.IsActive);

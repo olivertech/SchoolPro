@@ -25,5 +25,7 @@
         public Room? Room { get; set; }
         public Guid? SchoolSubjectId { get; set; }
         public SchoolSubject? SchoolSubject { get; set; }
+        public Guid? SchoolYearId { get; set; }
+        public SchoolYear? SchoolYear { get; set; }
     }
 }

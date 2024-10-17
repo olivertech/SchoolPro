@@ -6,6 +6,8 @@
     /// </summary>
     public class Address : EntityBase
     {
+        public string? Telephone { get; set; }
+        public string? CellPhone { get; set; }
         public string? StreetAddress { get; set; } = null!;
         public string? AddressLine2 { get; set; }
         public string? Neighborhood { get; set; } = null!;

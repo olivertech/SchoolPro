@@ -1,8 +1,8 @@
 ﻿namespace SchoolPro.Infra.EntityConfigurations
 {
-    public class StudentClassConfiguration : IEntityTypeConfiguration<StudentClass>
+    public class SchoolFeeConfiguration : IEntityTypeConfiguration<SchoolFee>
     {
-        public void Configure(EntityTypeBuilder<StudentClass> builder)
+        public void Configure(EntityTypeBuilder<SchoolFee> builder)
         {
             //Common columns
             builder.HasKey(x => x.Id);
@@ -16,17 +16,14 @@
 
             //Entity columns
             builder.Property(x => x.Id).HasColumnName("Id").HasValueGenerator<GuidValueGenerator>();
-            builder.Property(x => x.Name).HasColumnName("name").HasMaxLength(50).IsRequired();
-            builder.Property(x => x.Description).HasColumnName("description").HasMaxLength(500).IsRequired(false);
-            builder.Property(x => x.Capacity).HasColumnName("capacity");
+            builder.Property(x => x.Value).HasColumnName("value").IsRequired();
+            builder.Property(x => x.DueDate).HasColumnName("due_date");
+            builder.Property(x => x.PaymentDate).HasColumnName("payment_date");
+            builder.Property(x => x.StatusFee).HasColumnName("status_fee");
+            builder.Property(x => x.SchoolEnrollmentId).HasColumnName("school_enrollment_id");
+            builder.Property(x => x.DocumentId).HasColumnName("document_id");
 
-            builder.Property(x => x.RoomId).HasColumnName("room_id").IsRequired();
-
-            builder.HasMany(d => d.Students)
-                .WithOne(d => d.StudentClass)
-                .HasForeignKey(d => d.StudentClassId).HasConstraintName("student_class_Id");
-
-            builder.ToTable("Student_Class");
+            builder.ToTable("School_Fee");
 
             //Global filter
             builder.HasQueryFilter(x => x.IsActive);

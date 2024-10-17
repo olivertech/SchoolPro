@@ -20,6 +20,7 @@
             builder.Property(x => x.Description).HasColumnName("description").HasMaxLength(500).IsRequired(false);
             builder.Property(x => x.Birthdate).HasColumnName("birthdate").IsRequired(false);
             builder.Property(x => x.Gender).HasColumnName("gender").HasMaxLength(1).IsRequired(false);
+            builder.Property(x => x.AddressId).HasColumnName("address_id");
 
             //Relationship One-To-Many
             builder.HasMany(d => d.Documents)

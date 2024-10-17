@@ -17,9 +17,13 @@ namespace SchoolPro.Infra.Context
         public DbSet<Room> Rooms { get; set; }
         public DbSet<School> Schools { get; set; }
         public DbSet<SchoolCalendar> SchoolCalendars { get; set; }
+        public DbSet<SchoolEnrollment> SchoolEnrollments { get; set; }
+        public DbSet<SchoolFee> SchoolFees { get; set; }
         public DbSet<SchoolSubject> SchoolSubjects { get; set; }
+        public DbSet<SchoolYear> SchoolYears { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<StudentClass> StudentClasses { get; set; }
+        public DbSet<StudentGrade> StudentGrades { get; set; }
         public DbSet<StudentParent> StudentParents { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<TeacherSchoolSubject> TeacherSchoolSubjects { get; set; }

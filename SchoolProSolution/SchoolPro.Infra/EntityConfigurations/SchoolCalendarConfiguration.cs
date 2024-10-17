@@ -16,8 +16,9 @@
 
             builder.Property(x => x.RoomId).HasColumnName("room_id");
             builder.Property(x => x.SchoolSubjectId).HasColumnName("school_subject_id");
+            builder.Property(x => x.SchoolYearId).HasColumnName("school_year_id");
 
-            builder.HasKey(x => new { x.RoomId, x.SchoolSubjectId });
+            builder.HasKey(x => new { x.RoomId, x.SchoolSubjectId, x.SchoolYearId });
 
             builder.ToTable("School_Calendar");
 

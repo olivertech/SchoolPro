@@ -16,6 +16,8 @@
 
             //Entity columns
             builder.Property(x => x.Id).HasColumnName("Id").HasValueGenerator<GuidValueGenerator>();
+            builder.Property(x => x.Telephone).HasColumnName("telephone").HasMaxLength(10).IsRequired(false);
+            builder.Property(x => x.CellPhone).HasColumnName("cellphone").HasMaxLength(11).IsRequired(false);
             builder.Property(x => x.StreetAddress).HasColumnName("street_address").HasMaxLength(250).IsRequired();
             builder.Property(x => x.AddressLine2).HasColumnName("address_line_2").HasMaxLength(250);
             builder.Property(x => x.Neighborhood).HasColumnName("neighborhood").HasMaxLength(250);
