@@ -6,7 +6,7 @@
         {
             //Common columns
             builder.Property(x => x.IsActive).HasColumnName("is_active").IsRequired().HasDefaultValue(true);
-            builder.Property(x => x.SchoolKey).HasColumnName("school_key");
+            builder.Property(x => x.SchoolKey).HasColumnName("client_school_key");
 
             //Entity columns
             builder.HasKey(x => new { x.SchoolSubjectId, x.TeacherId });

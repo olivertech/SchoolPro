@@ -22,5 +22,8 @@
 
         public Guid? SchoolId { get; set; }
         public School? School { get; set; }
+
+        public Guid? DocumentTypeId { get; set; }
+        public DocumentType? DocumentType { get; set; }
     }
 }

@@ -1,5 +1,8 @@
 ﻿namespace SchoolPro.Core.Entities
 {
+    /// <summary>
+    /// Entidade quearmazena os dados das matrículas escolares
+    /// </summary>
     public class SchoolEnrollment : EntityBase
     {
         public string Enrollment { get; set; } = null!;

@@ -11,8 +11,8 @@
         public string Gender { get; set; } = null!;
 
         //Navigation Property
-        public Guid? AddressId { get; set; }
-        public Address? Address { get; set; }
+        public Guid? ContactId { get; set; }
+        public Contact? Contact { get; set; }
 
         public Guid? StudentClassId { get; set; }
         public StudentClass? StudentClass { get; set; }

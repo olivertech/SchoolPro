@@ -10,7 +10,7 @@
             builder.Property(x => x.CreatedAt).HasColumnName("created_at");
             builder.Property(x => x.UpdatedAt).HasColumnName("updated_at");
             builder.Property(x => x.DeletedAt).HasColumnName("deleted_at");
-            builder.Property(x => x.SchoolKey).HasColumnName("school_key");
+            builder.Property(x => x.SchoolKey).HasColumnName("client_school_key");
 
             builder.Property(x => x.Id).HasColumnName("id");
 
@@ -18,7 +18,11 @@
             builder.Property(x => x.Id).HasColumnName("Id").HasValueGenerator<GuidValueGenerator>();
             builder.Property(x => x.Name).HasColumnName("name").HasMaxLength(50).IsRequired();
             builder.Property(x => x.Description).HasColumnName("description").HasMaxLength(500).IsRequired(false);
-            builder.Property(x => x.AddressId).HasColumnName("address_id");
+            builder.Property(x => x.CNPJ).HasColumnName("cnpj").HasMaxLength(14).IsRequired();
+            builder.Property(x => x.StateRegistration).HasColumnName("state_registration").HasMaxLength(25).IsRequired(false);
+            builder.Property(x => x.CountyRegistration).HasColumnName("count_registration").HasMaxLength(25).IsRequired(false);
+            builder.Property(x => x.ContactId).HasColumnName("contact_id");
+            builder.Property(x => x.ClientId).HasColumnName("client_id");
 
             //Relationship One-To-Many
             builder.HasMany(d => d.Documents)

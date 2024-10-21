@@ -12,13 +12,41 @@ namespace SchoolPro.Infra.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Address",
+                name: "Client",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    description = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: true),
+                    responsable_name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    responsable_email = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
+                    responsable_cellphone_1 = table.Column<string>(type: "character varying(11)", maxLength: 11, nullable: true),
+                    responsable_cellphone_2 = table.Column<string>(type: "character varying(11)", maxLength: 11, nullable: true),
+                    client_key = table.Column<Guid>(type: "uuid", nullable: false),
+                    is_active = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
+                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    deleted_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Client", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Contact",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     telephone = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: true),
                     cellphone = table.Column<string>(type: "character varying(11)", maxLength: 11, nullable: true),
-                    street_address = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: false),
+                    email = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
+                    facebook = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    instagram = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    twitter = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    linkedin = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    github = table.Column<string>(type: "character varying(11)", maxLength: 11, nullable: true),
+                    street_address = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
                     address_line_2 = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
                     neighborhood = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
                     city = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
@@ -28,11 +56,88 @@ namespace SchoolPro.Infra.Migrations
                     created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     deleted_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    school_key = table.Column<Guid>(type: "uuid", nullable: false)
+                    client_school_key = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Address", x => x.Id);
+                    table.PrimaryKey("PK_Contact", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Document_Type",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    description = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: true),
+                    Icone = table.Column<string>(type: "text", nullable: true),
+                    is_active = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
+                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    deleted_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    client_school_key = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Document_Type", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Feature",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    description = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: true),
+                    menu_name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    menu_tip = table.Column<string>(type: "character varying(25)", maxLength: 25, nullable: false),
+                    menu_endpoint = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: false),
+                    menu_icon = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    is_active = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
+                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    deleted_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    client_school_key = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Feature", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Fee_Type",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    description = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: true),
+                    is_active = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
+                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    deleted_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    client_school_key = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Fee_Type", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Role",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    description = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: true),
+                    is_active = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
+                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    deleted_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    client_school_key = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Role", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -46,7 +151,7 @@ namespace SchoolPro.Infra.Migrations
                     created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     deleted_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    school_key = table.Column<Guid>(type: "uuid", nullable: false)
+                    client_school_key = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -66,11 +171,31 @@ namespace SchoolPro.Infra.Migrations
                     created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     deleted_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    school_key = table.Column<Guid>(type: "uuid", nullable: false)
+                    client_school_key = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_School_Year", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "User",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    email = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    password = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: false),
+                    picture_path = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    is_active = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
+                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    deleted_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    client_school_key = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_User", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -87,15 +212,15 @@ namespace SchoolPro.Infra.Migrations
                     created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     deleted_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    school_key = table.Column<Guid>(type: "uuid", nullable: false)
+                    client_school_key = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Parent", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Parent_Address_address_id",
+                        name: "FK_Parent_Contact_address_id",
                         column: x => x.address_id,
-                        principalTable: "Address",
+                        principalTable: "Contact",
                         principalColumn: "Id");
                 });
 
@@ -106,20 +231,29 @@ namespace SchoolPro.Infra.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     description = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: true),
-                    address_id = table.Column<Guid>(type: "uuid", nullable: true),
+                    cnpj = table.Column<string>(type: "character varying(14)", maxLength: 14, nullable: false),
+                    state_registration = table.Column<string>(type: "character varying(25)", maxLength: 25, nullable: true),
+                    count_registration = table.Column<string>(type: "character varying(25)", maxLength: 25, nullable: true),
+                    client_school_key = table.Column<Guid>(type: "uuid", nullable: false),
+                    contact_id = table.Column<Guid>(type: "uuid", nullable: true),
+                    client_id = table.Column<Guid>(type: "uuid", nullable: true),
                     is_active = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
                     created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    deleted_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    school_key = table.Column<Guid>(type: "uuid", nullable: false)
+                    deleted_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_School", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_School_Address_address_id",
-                        column: x => x.address_id,
-                        principalTable: "Address",
+                        name: "FK_School_Client_client_id",
+                        column: x => x.client_id,
+                        principalTable: "Client",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_School_Contact_contact_id",
+                        column: x => x.contact_id,
+                        principalTable: "Contact",
                         principalColumn: "Id");
                 });
 
@@ -137,16 +271,68 @@ namespace SchoolPro.Infra.Migrations
                     created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     deleted_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    school_key = table.Column<Guid>(type: "uuid", nullable: false)
+                    client_school_key = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Teacher", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Teacher_Address_address_id",
+                        name: "FK_Teacher_Contact_address_id",
                         column: x => x.address_id,
-                        principalTable: "Address",
+                        principalTable: "Contact",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Feature_Role",
+                columns: table => new
+                {
+                    feature_id = table.Column<Guid>(type: "uuid", nullable: false),
+                    role_id = table.Column<Guid>(type: "uuid", nullable: false),
+                    is_active = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
+                    client_school_key = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Feature_Role", x => new { x.feature_id, x.role_id });
+                    table.ForeignKey(
+                        name: "feature_id",
+                        column: x => x.feature_id,
+                        principalTable: "Feature",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "role_id",
+                        column: x => x.role_id,
+                        principalTable: "Role",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "User_Role",
+                columns: table => new
+                {
+                    user_id = table.Column<Guid>(type: "uuid", nullable: false),
+                    role_id = table.Column<Guid>(type: "uuid", nullable: false),
+                    is_active = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
+                    client_school_key = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_User_Role", x => new { x.user_id, x.role_id });
+                    table.ForeignKey(
+                        name: "role_id",
+                        column: x => x.role_id,
+                        principalTable: "Role",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "user_id",
+                        column: x => x.user_id,
+                        principalTable: "User",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -162,7 +348,7 @@ namespace SchoolPro.Infra.Migrations
                     created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     deleted_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    school_key = table.Column<Guid>(type: "uuid", nullable: false)
+                    client_school_key = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -181,7 +367,7 @@ namespace SchoolPro.Infra.Migrations
                     teacher_id = table.Column<Guid>(type: "uuid", nullable: false),
                     school_subject_id = table.Column<Guid>(type: "uuid", nullable: false),
                     is_active = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
-                    school_key = table.Column<Guid>(type: "uuid", nullable: false)
+                    client_school_key = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -212,7 +398,7 @@ namespace SchoolPro.Infra.Migrations
                     time_from = table.Column<TimeOnly>(type: "time without time zone", nullable: false),
                     time_to = table.Column<TimeOnly>(type: "time without time zone", nullable: false),
                     is_active = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
-                    school_key = table.Column<Guid>(type: "uuid", nullable: false)
+                    client_school_key = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -250,7 +436,7 @@ namespace SchoolPro.Infra.Migrations
                     created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     deleted_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    school_key = table.Column<Guid>(type: "uuid", nullable: false)
+                    client_school_key = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -278,15 +464,15 @@ namespace SchoolPro.Infra.Migrations
                     created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     deleted_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    school_key = table.Column<Guid>(type: "uuid", nullable: false)
+                    client_school_key = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Student", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Student_Address_address_id",
+                        name: "FK_Student_Contact_address_id",
                         column: x => x.address_id,
-                        principalTable: "Address",
+                        principalTable: "Contact",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "student_class_Id",
@@ -307,15 +493,21 @@ namespace SchoolPro.Infra.Migrations
                     teacher_id = table.Column<Guid>(type: "uuid", nullable: true),
                     parent_id = table.Column<Guid>(type: "uuid", nullable: true),
                     school_id = table.Column<Guid>(type: "uuid", nullable: true),
+                    document_type_id = table.Column<Guid>(type: "uuid", nullable: true),
                     is_active = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
                     created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     deleted_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    school_key = table.Column<Guid>(type: "uuid", nullable: false)
+                    client_school_key = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Document", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Document_Document_Type_document_type_id",
+                        column: x => x.document_type_id,
+                        principalTable: "Document_Type",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "parent_Id",
                         column: x => x.parent_id,
@@ -352,7 +544,7 @@ namespace SchoolPro.Infra.Migrations
                     created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     deleted_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    school_key = table.Column<Guid>(type: "uuid", nullable: false)
+                    client_school_key = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -384,7 +576,7 @@ namespace SchoolPro.Infra.Migrations
                     student_id = table.Column<Guid>(type: "uuid", nullable: false),
                     parent_id = table.Column<Guid>(type: "uuid", nullable: false),
                     is_active = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
-                    school_key = table.Column<Guid>(type: "uuid", nullable: false)
+                    client_school_key = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -418,7 +610,7 @@ namespace SchoolPro.Infra.Migrations
                     created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     deleted_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    school_key = table.Column<Guid>(type: "uuid", nullable: false)
+                    client_school_key = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -451,11 +643,12 @@ namespace SchoolPro.Infra.Migrations
                     status_fee = table.Column<string>(type: "text", nullable: false),
                     school_enrollment_id = table.Column<Guid>(type: "uuid", nullable: true),
                     document_id = table.Column<Guid>(type: "uuid", nullable: true),
+                    fee_type_id = table.Column<Guid>(type: "uuid", nullable: true),
                     is_active = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
                     created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     deleted_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    school_key = table.Column<Guid>(type: "uuid", nullable: false)
+                    client_school_key = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -466,11 +659,21 @@ namespace SchoolPro.Infra.Migrations
                         principalTable: "Document",
                         principalColumn: "Id");
                     table.ForeignKey(
+                        name: "FK_School_Fee_Fee_Type_fee_type_id",
+                        column: x => x.fee_type_id,
+                        principalTable: "Fee_Type",
+                        principalColumn: "Id");
+                    table.ForeignKey(
                         name: "FK_School_Fee_School_Enrollment_school_enrollment_id",
                         column: x => x.school_enrollment_id,
                         principalTable: "School_Enrollment",
                         principalColumn: "Id");
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Document_document_type_id",
+                table: "Document",
+                column: "document_type_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Document_parent_id",
@@ -493,6 +696,11 @@ namespace SchoolPro.Infra.Migrations
                 column: "teacher_id");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Feature_Role_role_id",
+                table: "Feature_Role",
+                column: "role_id");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Parent_address_id",
                 table: "Parent",
                 column: "address_id");
@@ -503,9 +711,14 @@ namespace SchoolPro.Infra.Migrations
                 column: "school_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_School_address_id",
+                name: "IX_School_client_id",
                 table: "School",
-                column: "address_id");
+                column: "client_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_School_contact_id",
+                table: "School",
+                column: "contact_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_School_Calendar_school_subject_id",
@@ -536,6 +749,11 @@ namespace SchoolPro.Infra.Migrations
                 name: "IX_School_Fee_document_id",
                 table: "School_Fee",
                 column: "document_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_School_Fee_fee_type_id",
+                table: "School_Fee",
+                column: "fee_type_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_School_Fee_school_enrollment_id",
@@ -586,11 +804,19 @@ namespace SchoolPro.Infra.Migrations
                 name: "IX_Teacher_School_Subject_teacher_id",
                 table: "Teacher_School_Subject",
                 column: "teacher_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_User_Role_role_id",
+                table: "User_Role",
+                column: "role_id");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Feature_Role");
+
             migrationBuilder.DropTable(
                 name: "School_Calendar");
 
@@ -607,16 +833,34 @@ namespace SchoolPro.Infra.Migrations
                 name: "Teacher_School_Subject");
 
             migrationBuilder.DropTable(
+                name: "User_Role");
+
+            migrationBuilder.DropTable(
+                name: "Feature");
+
+            migrationBuilder.DropTable(
+                name: "Fee_Type");
+
+            migrationBuilder.DropTable(
                 name: "School_Enrollment");
 
             migrationBuilder.DropTable(
                 name: "School_Subject");
 
             migrationBuilder.DropTable(
+                name: "Role");
+
+            migrationBuilder.DropTable(
+                name: "User");
+
+            migrationBuilder.DropTable(
                 name: "Document");
 
             migrationBuilder.DropTable(
                 name: "School_Year");
+
+            migrationBuilder.DropTable(
+                name: "Document_Type");
 
             migrationBuilder.DropTable(
                 name: "Parent");
@@ -637,7 +881,10 @@ namespace SchoolPro.Infra.Migrations
                 name: "School");
 
             migrationBuilder.DropTable(
-                name: "Address");
+                name: "Client");
+
+            migrationBuilder.DropTable(
+                name: "Contact");
         }
     }
 }

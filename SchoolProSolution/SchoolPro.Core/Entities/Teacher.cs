@@ -11,8 +11,8 @@
         public string Gender { get; set; } = null!;
 
         //Navigation Property
-        public Guid? AddressId { get; set; }
-        public Address? Address { get; set; }
+        public Guid? ContactId { get; set; }
+        public Contact? Contact { get; set; }
 
         // Many-to-many relation
         public IList<TeacherSchoolSubject>? TeacherSchoolSubjects { get; set; }

@@ -10,7 +10,7 @@
             builder.Property(x => x.CreatedAt).HasColumnName("created_at");
             builder.Property(x => x.UpdatedAt).HasColumnName("updated_at");
             builder.Property(x => x.DeletedAt).HasColumnName("deleted_at");
-            builder.Property(x => x.SchoolKey).HasColumnName("school_key");
+            builder.Property(x => x.ClientSchoolKey).HasColumnName("client_school_key");
 
             builder.Property(x => x.Id).HasColumnName("id");
 
@@ -22,6 +22,7 @@
             builder.Property(x => x.StatusFee).HasColumnName("status_fee");
             builder.Property(x => x.SchoolEnrollmentId).HasColumnName("school_enrollment_id");
             builder.Property(x => x.DocumentId).HasColumnName("document_id");
+            builder.Property(x => x.FeeTypeId).HasColumnName("fee_type_id");
 
             builder.ToTable("School_Fee");
 

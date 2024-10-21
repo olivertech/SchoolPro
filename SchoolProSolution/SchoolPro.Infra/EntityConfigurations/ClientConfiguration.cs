@@ -1,8 +1,8 @@
 ﻿namespace SchoolPro.Infra.EntityConfigurations
 {
-    public class RoomConfiguration : IEntityTypeConfiguration<Room>
+    public class ClientConfiguration : IEntityTypeConfiguration<Client>
     {
-        public void Configure(EntityTypeBuilder<Room> builder)
+        public void Configure(EntityTypeBuilder<Client> builder)
         {
             //Common columns
             builder.HasKey(x => x.Id);
@@ -10,7 +10,6 @@
             builder.Property(x => x.CreatedAt).HasColumnName("created_at");
             builder.Property(x => x.UpdatedAt).HasColumnName("updated_at");
             builder.Property(x => x.DeletedAt).HasColumnName("deleted_at");
-            builder.Property(x => x.ClientSchoolKey).HasColumnName("client_school_key");
 
             builder.Property(x => x.Id).HasColumnName("id");
 
@@ -18,10 +17,13 @@
             builder.Property(x => x.Id).HasColumnName("Id").HasValueGenerator<GuidValueGenerator>();
             builder.Property(x => x.Name).HasColumnName("name").HasMaxLength(50).IsRequired();
             builder.Property(x => x.Description).HasColumnName("description").HasMaxLength(500).IsRequired(false);
-            builder.Property(x => x.Capacity).HasColumnName("capacity");
-            builder.Property(x => x.SchoolId).HasColumnName("school_id");
+            builder.Property(x => x.ResponsableName).HasColumnName("responsable_name").HasMaxLength(50).IsRequired();
+            builder.Property(x => x.ResponsableEmail).HasColumnName("responsable_email").HasMaxLength(50).IsRequired(false);
+            builder.Property(x => x.ResponsableCellPhone1).HasColumnName("responsable_cellphone_1").HasMaxLength(11).IsRequired(false);
+            builder.Property(x => x.ResponsableCellPhone2).HasColumnName("responsable_cellphone_2").HasMaxLength(11).IsRequired(false);
+            builder.Property(x => x.ClientKey).HasColumnName("client_key").HasValueGenerator<GuidValueGenerator>();
 
-            builder.ToTable("Room");
+            builder.ToTable("Client");
 
             //Global filter
             builder.HasQueryFilter(x => x.IsActive);

@@ -1,8 +1,8 @@
 ﻿namespace SchoolPro.Infra.EntityConfigurations
 {
-    public class RoomConfiguration : IEntityTypeConfiguration<Room>
+    public class UserConfiguration : IEntityTypeConfiguration<User>
     {
-        public void Configure(EntityTypeBuilder<Room> builder)
+        public void Configure(EntityTypeBuilder<User> builder)
         {
             //Common columns
             builder.HasKey(x => x.Id);
@@ -17,11 +17,11 @@
             //Entity columns
             builder.Property(x => x.Id).HasColumnName("Id").HasValueGenerator<GuidValueGenerator>();
             builder.Property(x => x.Name).HasColumnName("name").HasMaxLength(50).IsRequired();
-            builder.Property(x => x.Description).HasColumnName("description").HasMaxLength(500).IsRequired(false);
-            builder.Property(x => x.Capacity).HasColumnName("capacity");
-            builder.Property(x => x.SchoolId).HasColumnName("school_id");
+            builder.Property(x => x.Password).HasColumnName("password").HasMaxLength(10).IsRequired();
+            builder.Property(x => x.Email).HasColumnName("email").HasMaxLength(50).IsRequired();
+            builder.Property(x => x.PicturePath).HasColumnName("picture_path").HasMaxLength(50).IsRequired();
 
-            builder.ToTable("Room");
+            builder.ToTable("User");
 
             //Global filter
             builder.HasQueryFilter(x => x.IsActive);

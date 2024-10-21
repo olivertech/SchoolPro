@@ -6,24 +6,24 @@
         {
             //Common columns
             builder.Property(x => x.IsActive).HasColumnName("is_active").IsRequired().HasDefaultValue(true);
-            builder.Property(x => x.SchoolKey).HasColumnName("school_key");
+            builder.Property(x => x.SchoolKey).HasColumnName("client_school_key");
 
             //Entity columns
             builder.HasKey(x => new { x.StudentId, x.ParentId});
 
             //Relationship One-To-Many
-            builder.HasOne(sp => sp.Student)
-                   .WithMany(s => s.StudentParents)
-                   .HasForeignKey(sp => sp.StudentId).HasConstraintName("student_id");
+            builder.HasOne(x => x.Student)
+                   .WithMany(x => x.StudentParents)
+                   .HasForeignKey(x => x.StudentId).HasConstraintName("student_id");
 
-            builder.HasOne(sp => sp.Parent)
-                   .WithMany(p => p.StudentParents)
-                   .HasForeignKey(sp => sp.ParentId).HasConstraintName("parent_id");
+            builder.HasOne(x => x.Parent)
+                   .WithMany(x => x.StudentParents)
+                   .HasForeignKey(x => x.ParentId).HasConstraintName("parent_id");
 
-            builder.Property(o => o.StudentId)
+            builder.Property(x => x.StudentId)
                    .HasColumnName("student_id");
 
-            builder.Property(o => o.ParentId)
+            builder.Property(x => x.ParentId)
                   .HasColumnName("parent_id");
 
             builder.ToTable("Student_Parent");

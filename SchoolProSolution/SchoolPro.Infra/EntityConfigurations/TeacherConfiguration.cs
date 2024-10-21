@@ -10,7 +10,7 @@
             builder.Property(x => x.CreatedAt).HasColumnName("created_at");
             builder.Property(x => x.UpdatedAt).HasColumnName("updated_at");
             builder.Property(x => x.DeletedAt).HasColumnName("deleted_at");
-            builder.Property(x => x.SchoolKey).HasColumnName("school_key");
+            builder.Property(x => x.ClientSchoolKey).HasColumnName("client_school_key");
 
             builder.Property(x => x.Id).HasColumnName("id");
 
@@ -20,7 +20,7 @@
             builder.Property(x => x.Description).HasColumnName("description").HasMaxLength(500).IsRequired(false);
             builder.Property(x => x.Birthdate).HasColumnName("birthdate").IsRequired(false);
             builder.Property(x => x.Gender).HasColumnName("gender").HasMaxLength(1).IsRequired(false);
-            builder.Property(x => x.AddressId).HasColumnName("address_id");
+            builder.Property(x => x.ContactId).HasColumnName("address_id");
 
             //Relationship One-To-Many
             builder.HasMany(d => d.Documents)

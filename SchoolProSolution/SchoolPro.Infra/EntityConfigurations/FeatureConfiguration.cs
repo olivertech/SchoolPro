@@ -1,8 +1,8 @@
 ﻿namespace SchoolPro.Infra.EntityConfigurations
 {
-    public class DocumentConfiguration : IEntityTypeConfiguration<Document>
+    public class FeatureConfiguration : IEntityTypeConfiguration<Feature>
     {
-        public void Configure(EntityTypeBuilder<Document> builder)
+        public void Configure(EntityTypeBuilder<Feature> builder)
         {
             //Common columns
             builder.HasKey(x => x.Id);
@@ -16,16 +16,14 @@
 
             //Entity columns
             builder.Property(x => x.Id).HasColumnName("Id").HasValueGenerator<GuidValueGenerator>();
-            builder.Property(x => x.Title).HasColumnName("title").HasMaxLength(50).IsRequired();
+            builder.Property(x => x.Name).HasColumnName("name").HasMaxLength(50).IsRequired();
             builder.Property(x => x.Description).HasColumnName("description").HasMaxLength(500).IsRequired(false);
-            builder.Property(x => x.FilePath).HasMaxLength(250).HasColumnName("file_path").IsRequired();
-            builder.Property(x => x.ParentId).HasColumnName("parent_id");
-            builder.Property(x => x.SchoolId).HasColumnName("school_id");
-            builder.Property(x => x.StudentId).HasColumnName("student_id");
-            builder.Property(x => x.TeacherId).HasColumnName("teacher_id");
-            builder.Property(x => x.DocumentTypeId).HasColumnName("document_type_id");
+            builder.Property(x => x.MenuName).HasColumnName("menu_name").HasMaxLength(50).IsRequired();
+            builder.Property(x => x.MenuTip).HasColumnName("menu_tip").HasMaxLength(25).IsRequired();
+            builder.Property(x => x.MenuEndPoint).HasColumnName("menu_endpoint").HasMaxLength(150).IsRequired();
+            builder.Property(x => x.MenuIcon).HasColumnName("menu_icon").HasMaxLength(50).IsRequired();
 
-            builder.ToTable("Document");
+            builder.ToTable("Feature");
 
             //Global filter
             builder.HasQueryFilter(x => x.IsActive);
