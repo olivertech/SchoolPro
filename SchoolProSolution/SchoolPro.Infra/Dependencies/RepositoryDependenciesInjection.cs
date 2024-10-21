@@ -1,14 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using SchoolPro.Infra.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SchoolPro.Infra.Dependencies
+﻿namespace SchoolPro.Infra.Dependencies
 {
     /// <summary>
     /// Classe estática que concentra as configurações

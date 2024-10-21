@@ -1,6 +1,4 @@
-﻿using SchoolPro.Core.Entities.Base;
-
-namespace SchoolPro.Core.Entities
+﻿namespace SchoolPro.Core.Entities
 {
     /// <summary>
     /// Entidade que armazena os dados de uma escola
