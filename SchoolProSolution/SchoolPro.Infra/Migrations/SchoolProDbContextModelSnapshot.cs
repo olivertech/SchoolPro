@@ -1283,6 +1283,10 @@ namespace SchoolPro.Infra.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("Id");
 
+                    b.Property<Guid>("ClientId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("client_id");
+
                     b.Property<Guid>("ClientSchoolKey")
                         .HasColumnType("uuid")
                         .HasColumnName("client_school_key");
@@ -1330,6 +1334,8 @@ namespace SchoolPro.Infra.Migrations
                         .HasColumnName("updated_at");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
 
                     b.ToTable("User", (string)null);
                 });
@@ -1624,6 +1630,17 @@ namespace SchoolPro.Infra.Migrations
                     b.Navigation("SchoolSubject");
 
                     b.Navigation("Teacher");
+                });
+
+            modelBuilder.Entity("SchoolPro.Core.Entities.User", b =>
+                {
+                    b.HasOne("SchoolPro.Core.Entities.Client", "Client")
+                        .WithMany()
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Client");
                 });
 
             modelBuilder.Entity("SchoolPro.Core.Entities.UserRole", b =>

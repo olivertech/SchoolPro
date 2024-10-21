@@ -20,6 +20,7 @@
             builder.Property(x => x.Password).HasColumnName("password").HasMaxLength(10).IsRequired();
             builder.Property(x => x.Email).HasColumnName("email").HasMaxLength(50).IsRequired();
             builder.Property(x => x.PicturePath).HasColumnName("picture_path").HasMaxLength(50).IsRequired();
+            builder.Property(x => x.ClientId).HasColumnName("client_id");
 
             builder.ToTable("User");
 

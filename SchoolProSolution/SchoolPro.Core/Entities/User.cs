@@ -12,6 +12,8 @@
         public string? PicturePath { get; set; }
 
         //Navigation Properties
+        public Guid ClientId { get; set; }
+        public Client? Client { get; set; }
         public IList<UserRole>? UserRoles { get; set; }
     }
 }

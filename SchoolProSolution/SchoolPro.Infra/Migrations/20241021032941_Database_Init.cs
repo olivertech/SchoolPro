@@ -187,6 +187,7 @@ namespace SchoolPro.Infra.Migrations
                     email = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     password = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: false),
                     picture_path = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    client_id = table.Column<Guid>(type: "uuid", nullable: false),
                     is_active = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
                     created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
@@ -196,6 +197,12 @@ namespace SchoolPro.Infra.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_User", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_User_Client_client_id",
+                        column: x => x.client_id,
+                        principalTable: "Client",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -804,6 +811,11 @@ namespace SchoolPro.Infra.Migrations
                 name: "IX_Teacher_School_Subject_teacher_id",
                 table: "Teacher_School_Subject",
                 column: "teacher_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_User_client_id",
+                table: "User",
+                column: "client_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_User_Role_role_id",
