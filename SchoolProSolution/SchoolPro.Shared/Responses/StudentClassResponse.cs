@@ -1,9 +1,9 @@
-﻿namespace SchoolPro.Shared.Requests
+﻿namespace SchoolPro.Shared.Responses
 {
     /// <summary>
-    /// Request de Classe de Estudante
+    /// Response de Classe de Estudante
     /// </summary>
-    public class StudentClassRequest : RequestBase, IRequest
+    public class StudentClassResponse : ResponseBase, IResponse
     {
         public string? Name { get; set; }
         public string? Description { get; set; }

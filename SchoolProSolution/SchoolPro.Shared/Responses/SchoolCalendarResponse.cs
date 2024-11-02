@@ -1,9 +1,9 @@
-﻿namespace SchoolPro.Shared.Requests
+﻿namespace SchoolPro.Shared.Responses
 {
     /// <summary>
-    /// Request de Calendário Escolar
+    /// Response de Calendário Escolar
     /// </summary>
-    public class SchoolCalendarRequest : RequestBase, IRequest
+    public class SchoolCalendarResponse : ResponseBase, IResponse
     {
         public string? Description { get; set; }
         public DateOnly Date { get; set; }

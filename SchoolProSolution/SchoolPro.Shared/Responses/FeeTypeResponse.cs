@@ -1,9 +1,9 @@
-﻿namespace SchoolPro.Shared.Requests
+﻿namespace SchoolPro.Shared.Responses
 {
     /// <summary>
-    /// Request de Tipo de Taxa
+    /// Response de Tipo de Taxa
     /// </summary>
-    public class FeeTypeRequest : RequestBase, IRequest
+    public class FeeTypeResponse : ResponseBase, IResponse
     {
         public string? Name { get; set; }
         public string? Description { get; set; }

@@ -1,9 +1,9 @@
-﻿namespace SchoolPro.Shared.Requests
+﻿namespace SchoolPro.Shared.Responses
 {
     /// <summary>
-    /// Request de Parente
+    /// Response de Parente
     /// </summary>
-    public class ParentRequest : RequestBase, IRequest
+    public class ParentResponse : ResponseBase, IResponse
     {
         public string? Name { get; set; }
         public DateOnly? Birthdate { get; set; }

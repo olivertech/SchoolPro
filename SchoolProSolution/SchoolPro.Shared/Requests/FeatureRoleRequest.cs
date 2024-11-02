@@ -1,4 +1,4 @@
-﻿namespace SchoolPro.Shared.Entities
+﻿namespace SchoolPro.Shared.Requests
 {
     /// <summary>
     /// Request de Recursos associados a Roles (Papéis)

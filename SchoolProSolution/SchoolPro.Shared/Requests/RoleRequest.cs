@@ -1,6 +1,4 @@
-﻿using SchoolPro.Core.Entities;
-
-namespace SchoolPro.Shared.Entities
+﻿namespace SchoolPro.Shared.Requests
 {
     /// <summary>
     /// Request de Papéis

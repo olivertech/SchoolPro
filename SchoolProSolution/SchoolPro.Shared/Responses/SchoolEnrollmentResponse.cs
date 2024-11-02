@@ -1,9 +1,9 @@
-﻿namespace SchoolPro.Shared.Requests
+﻿namespace SchoolPro.Shared.Responses
 {
     /// <summary>
-    /// Request de Matrícula Escolar
+    /// Response de Matrícula Escolar
     /// </summary>
-    public class SchoolEnrollmentRequest : RequestBase, IRequest
+    public class SchoolEnrollmentResponse : ResponseBase, IResponse
     {
         public string? Enrollment { get; set; }
         public bool Approved { get; set; }

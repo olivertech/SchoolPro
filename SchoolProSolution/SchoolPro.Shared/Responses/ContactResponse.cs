@@ -1,9 +1,9 @@
-﻿namespace SchoolPro.Shared.Requests
+﻿namespace SchoolPro.Shared.Responses
 {
     /// <summary>
-    /// Request de Contato
+    /// Response de Contato
     /// </summary>
-    public class ContactRequest : RequestBase, IRequest
+    public class ContactResponse : ResponseBase, IResponse
     {
         public string? Telephone { get; set; }
         public string? CellPhone { get; set; }

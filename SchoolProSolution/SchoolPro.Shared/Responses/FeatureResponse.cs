@@ -1,9 +1,9 @@
-﻿namespace SchoolPro.Shared.Requests
+﻿namespace SchoolPro.Shared.Responses
 {
     /// <summary>
-    /// Request de Features (Recursos do sistema)
+    /// Response de Features (Recursos do sistema)
     /// </summary>
-    public class FeatureRequest : RequestBase, IRequest
+    public class FeatureResponse : ResponseBase, IResponse
     {
         public string? Name { get; set; }
         public string? Description { get; set; }

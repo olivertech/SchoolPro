@@ -1,4 +1,4 @@
-﻿namespace SchoolPro.Shared.Entities
+﻿namespace SchoolPro.Shared.Requests
 {
     /// <summary>
     /// Request do relacionamento dos professores com as matérias que ele leciona

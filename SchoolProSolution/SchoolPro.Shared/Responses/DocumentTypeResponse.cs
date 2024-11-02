@@ -1,9 +1,9 @@
-﻿namespace SchoolPro.Shared.Requests
+﻿namespace SchoolPro.Shared.Responses
 {
     /// <summary>
-    /// Request de Tipo de Documento
+    /// Response de Tipo de Documento
     /// </summary>
-    public class DocumentTypeRequest : RequestBase, IRequest
+    public class DocumentTypeResponse : ResponseBase, IResponse
     {
         public string? Name { get; set; }
         public string? Description { get; set; }

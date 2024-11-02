@@ -1,9 +1,9 @@
-﻿namespace SchoolPro.Shared.Requests
+﻿namespace SchoolPro.Shared.Responses
 {
     /// <summary>
-    /// Request de Pagamento
+    /// Response de Pagamento
     /// </summary>
-    public class SchoolFeeRequest : RequestBase, IRequest
+    public class SchoolFeeRequest : ResponseBase, IResponse
     {
         public decimal Value { get; set; }
         public DateOnly DueDate { get; set; }

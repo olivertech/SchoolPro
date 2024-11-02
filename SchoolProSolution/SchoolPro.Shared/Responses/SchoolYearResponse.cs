@@ -1,9 +1,9 @@
-﻿namespace SchoolPro.Shared.Requests
+﻿namespace SchoolPro.Shared.Responses
 {
     /// <summary>
-    /// Request de Ano Letivo
+    /// Response de Ano Letivo
     /// </summary>
-    public class SchoolYearRequest : RequestBase, IRequest
+    public class SchoolYearResponse : ResponseBase, IResponse
     {
         public int Year { get; set; }
         public string? Description { get; set; }
