@@ -5,7 +5,7 @@
     /// os recursos do sistema e quais roles/papéis
     /// podem acessar cada recurso.
     /// </summary>
-    public class FeatureRole : RelationBase
+    public class FeatureRole : EntityBase
     {
         public Guid? FeatureId { get; set; }
         public Feature? Feature { get; set; }

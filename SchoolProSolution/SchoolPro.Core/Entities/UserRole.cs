@@ -7,7 +7,7 @@
     /// que ele acesse mais de um conjunto de funcionalidades
     /// do sistema
     /// </summary>
-    public class UserRole : RelationBase
+    public class UserRole : EntityBase
     {
         //Navigation Property
         public Guid? UserId { get; set; }

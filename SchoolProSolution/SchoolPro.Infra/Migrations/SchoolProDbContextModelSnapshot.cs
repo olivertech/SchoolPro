@@ -27,7 +27,7 @@ namespace SchoolPro.Infra.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("Id");
+                        .HasColumnName("id");
 
                     b.Property<Guid>("ClientKey")
                         .HasColumnType("uuid")
@@ -93,7 +93,7 @@ namespace SchoolPro.Infra.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("Id");
+                        .HasColumnName("id");
 
                     b.Property<string>("AddressLine2")
                         .HasMaxLength(250)
@@ -197,7 +197,7 @@ namespace SchoolPro.Infra.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("Id");
+                        .HasColumnName("id");
 
                     b.Property<Guid>("ClientSchoolKey")
                         .HasColumnType("uuid")
@@ -278,7 +278,7 @@ namespace SchoolPro.Infra.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("Id");
+                        .HasColumnName("id");
 
                     b.Property<Guid>("ClientSchoolKey")
                         .HasColumnType("uuid")
@@ -326,7 +326,7 @@ namespace SchoolPro.Infra.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("Id");
+                        .HasColumnName("id");
 
                     b.Property<Guid>("ClientSchoolKey")
                         .HasColumnType("uuid")
@@ -392,13 +392,24 @@ namespace SchoolPro.Infra.Migrations
 
             modelBuilder.Entity("SchoolPro.Core.Entities.FeatureRole", b =>
                 {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<Guid>("ClientSchoolKey")
+                        .HasColumnType("uuid")
+                        .HasColumnName("client_school_key");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<Guid?>("FeatureId")
                         .HasColumnType("uuid")
                         .HasColumnName("feature_id");
-
-                    b.Property<Guid?>("RoleId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("role_id");
 
                     b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
@@ -406,11 +417,16 @@ namespace SchoolPro.Infra.Migrations
                         .HasDefaultValue(true)
                         .HasColumnName("is_active");
 
-                    b.Property<Guid>("SchoolKey")
+                    b.Property<Guid?>("RoleId")
                         .HasColumnType("uuid")
-                        .HasColumnName("client_school_key");
+                        .HasColumnName("role_id");
 
-                    b.HasKey("FeatureId", "RoleId");
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FeatureId");
 
                     b.HasIndex("RoleId");
 
@@ -422,7 +438,7 @@ namespace SchoolPro.Infra.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("Id");
+                        .HasColumnName("id");
 
                     b.Property<Guid>("ClientSchoolKey")
                         .HasColumnType("uuid")
@@ -467,7 +483,7 @@ namespace SchoolPro.Infra.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("Id");
+                        .HasColumnName("id");
 
                     b.Property<DateOnly?>("Birthdate")
                         .HasColumnType("date")
@@ -528,7 +544,7 @@ namespace SchoolPro.Infra.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("Id");
+                        .HasColumnName("id");
 
                     b.Property<Guid>("ClientSchoolKey")
                         .HasColumnType("uuid")
@@ -573,7 +589,7 @@ namespace SchoolPro.Infra.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("Id");
+                        .HasColumnName("id");
 
                     b.Property<int>("Capacity")
                         .HasColumnType("integer")
@@ -628,7 +644,7 @@ namespace SchoolPro.Infra.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("Id");
+                        .HasColumnName("id");
 
                     b.Property<string>("CNPJ")
                         .IsRequired()
@@ -668,6 +684,10 @@ namespace SchoolPro.Infra.Migrations
                         .HasDefaultValue(true)
                         .HasColumnName("is_active");
 
+                    b.Property<bool>("IsBranch")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_branch");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -698,21 +718,24 @@ namespace SchoolPro.Infra.Migrations
 
             modelBuilder.Entity("SchoolPro.Core.Entities.SchoolCalendar", b =>
                 {
-                    b.Property<Guid?>("RoomId")
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("room_id");
+                        .HasColumnName("id");
 
-                    b.Property<Guid?>("SchoolSubjectId")
+                    b.Property<Guid>("ClientSchoolKey")
                         .HasColumnType("uuid")
-                        .HasColumnName("school_subject_id");
+                        .HasColumnName("client_school_key");
 
-                    b.Property<Guid?>("SchoolYearId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("school_year_id");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<DateOnly>("Date")
                         .HasColumnType("date")
                         .HasColumnName("date");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Description")
                         .HasMaxLength(500)
@@ -725,9 +748,17 @@ namespace SchoolPro.Infra.Migrations
                         .HasDefaultValue(true)
                         .HasColumnName("is_active");
 
-                    b.Property<Guid>("SchoolKey")
+                    b.Property<Guid?>("RoomId")
                         .HasColumnType("uuid")
-                        .HasColumnName("client_school_key");
+                        .HasColumnName("room_id");
+
+                    b.Property<Guid?>("SchoolSubjectId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("school_subject_id");
+
+                    b.Property<Guid?>("SchoolYearId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("school_year_id");
 
                     b.Property<TimeOnly>("TimeFrom")
                         .HasColumnType("time without time zone")
@@ -737,7 +768,12 @@ namespace SchoolPro.Infra.Migrations
                         .HasColumnType("time without time zone")
                         .HasColumnName("time_to");
 
-                    b.HasKey("RoomId", "SchoolSubjectId", "SchoolYearId");
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoomId");
 
                     b.HasIndex("SchoolSubjectId");
 
@@ -751,7 +787,7 @@ namespace SchoolPro.Infra.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("Id");
+                        .HasColumnName("id");
 
                     b.Property<bool>("Approved")
                         .HasColumnType("boolean")
@@ -818,7 +854,7 @@ namespace SchoolPro.Infra.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("Id");
+                        .HasColumnName("id");
 
                     b.Property<Guid>("ClientSchoolKey")
                         .HasColumnType("uuid")
@@ -887,7 +923,7 @@ namespace SchoolPro.Infra.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("Id");
+                        .HasColumnName("id");
 
                     b.Property<Guid>("ClientSchoolKey")
                         .HasColumnType("uuid")
@@ -932,7 +968,7 @@ namespace SchoolPro.Infra.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("Id");
+                        .HasColumnName("id");
 
                     b.Property<decimal>("Billing")
                         .HasColumnType("numeric")
@@ -982,7 +1018,7 @@ namespace SchoolPro.Infra.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("Id");
+                        .HasColumnName("id");
 
                     b.Property<DateOnly?>("Birthdate")
                         .HasColumnType("date")
@@ -1048,7 +1084,7 @@ namespace SchoolPro.Infra.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("Id");
+                        .HasColumnName("id");
 
                     b.Property<int>("Capacity")
                         .HasColumnType("integer")
@@ -1104,7 +1140,7 @@ namespace SchoolPro.Infra.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("Id");
+                        .HasColumnName("id");
 
                     b.Property<Guid>("ClientSchoolKey")
                         .HasColumnType("uuid")
@@ -1164,13 +1200,20 @@ namespace SchoolPro.Infra.Migrations
 
             modelBuilder.Entity("SchoolPro.Core.Entities.StudentParent", b =>
                 {
-                    b.Property<Guid?>("StudentId")
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("student_id");
+                        .HasColumnName("id");
 
-                    b.Property<Guid?>("ParentId")
+                    b.Property<Guid>("ClientSchoolKey")
                         .HasColumnType("uuid")
-                        .HasColumnName("parent_id");
+                        .HasColumnName("client_school_key");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
@@ -1178,13 +1221,22 @@ namespace SchoolPro.Infra.Migrations
                         .HasDefaultValue(true)
                         .HasColumnName("is_active");
 
-                    b.Property<Guid>("SchoolKey")
+                    b.Property<Guid?>("ParentId")
                         .HasColumnType("uuid")
-                        .HasColumnName("client_school_key");
+                        .HasColumnName("parent_id");
 
-                    b.HasKey("StudentId", "ParentId");
+                    b.Property<Guid?>("StudentId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("student_id");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("ParentId");
+
+                    b.HasIndex("StudentId");
 
                     b.ToTable("Student_Parent", (string)null);
                 });
@@ -1194,7 +1246,7 @@ namespace SchoolPro.Infra.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("Id");
+                        .HasColumnName("id");
 
                     b.Property<DateOnly?>("Birthdate")
                         .HasColumnType("date")
@@ -1251,6 +1303,27 @@ namespace SchoolPro.Infra.Migrations
 
             modelBuilder.Entity("SchoolPro.Core.Entities.TeacherSchoolSubject", b =>
                 {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<Guid>("ClientSchoolKey")
+                        .HasColumnType("uuid")
+                        .HasColumnName("client_school_key");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
+
                     b.Property<Guid?>("SchoolSubjectId")
                         .HasColumnType("uuid")
                         .HasColumnName("school_subject_id");
@@ -1259,17 +1332,12 @@ namespace SchoolPro.Infra.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("teacher_id");
 
-                    b.Property<bool>("IsActive")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean")
-                        .HasDefaultValue(true)
-                        .HasColumnName("is_active");
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
 
-                    b.Property<Guid>("SchoolKey")
-                        .HasColumnType("uuid")
-                        .HasColumnName("client_school_key");
+                    b.HasKey("Id");
 
-                    b.HasKey("SchoolSubjectId", "TeacherId");
+                    b.HasIndex("SchoolSubjectId");
 
                     b.HasIndex("TeacherId");
 
@@ -1281,7 +1349,7 @@ namespace SchoolPro.Infra.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("Id");
+                        .HasColumnName("id");
 
                     b.Property<Guid>("ClientId")
                         .HasColumnType("uuid")
@@ -1342,13 +1410,20 @@ namespace SchoolPro.Infra.Migrations
 
             modelBuilder.Entity("SchoolPro.Core.Entities.UserRole", b =>
                 {
-                    b.Property<Guid?>("UserId")
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("user_id");
+                        .HasColumnName("id");
 
-                    b.Property<Guid?>("RoleId")
+                    b.Property<Guid>("ClientSchoolKey")
                         .HasColumnType("uuid")
-                        .HasColumnName("role_id");
+                        .HasColumnName("client_school_key");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
@@ -1356,13 +1431,22 @@ namespace SchoolPro.Infra.Migrations
                         .HasDefaultValue(true)
                         .HasColumnName("is_active");
 
-                    b.Property<Guid>("SchoolKey")
+                    b.Property<Guid?>("RoleId")
                         .HasColumnType("uuid")
-                        .HasColumnName("client_school_key");
+                        .HasColumnName("role_id");
 
-                    b.HasKey("UserId", "RoleId");
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("RoleId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("User_Role", (string)null);
                 });
@@ -1409,15 +1493,11 @@ namespace SchoolPro.Infra.Migrations
                     b.HasOne("SchoolPro.Core.Entities.Feature", "Feature")
                         .WithMany("FeaturesRole")
                         .HasForeignKey("FeatureId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
                         .HasConstraintName("feature_id");
 
                     b.HasOne("SchoolPro.Core.Entities.Role", "Role")
                         .WithMany("FeaturesRole")
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
                         .HasConstraintName("role_id");
 
                     b.Navigation("Feature");
@@ -1462,21 +1542,15 @@ namespace SchoolPro.Infra.Migrations
                 {
                     b.HasOne("SchoolPro.Core.Entities.Room", "Room")
                         .WithMany()
-                        .HasForeignKey("RoomId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RoomId");
 
                     b.HasOne("SchoolPro.Core.Entities.SchoolSubject", "SchoolSubject")
                         .WithMany()
-                        .HasForeignKey("SchoolSubjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SchoolSubjectId");
 
                     b.HasOne("SchoolPro.Core.Entities.SchoolYear", "SchoolYear")
                         .WithMany()
-                        .HasForeignKey("SchoolYearId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SchoolYearId");
 
                     b.Navigation("Room");
 
@@ -1586,15 +1660,11 @@ namespace SchoolPro.Infra.Migrations
                     b.HasOne("SchoolPro.Core.Entities.Parent", "Parent")
                         .WithMany("StudentParents")
                         .HasForeignKey("ParentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
                         .HasConstraintName("parent_id");
 
                     b.HasOne("SchoolPro.Core.Entities.Student", "Student")
                         .WithMany("StudentParents")
                         .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
                         .HasConstraintName("student_id");
 
                     b.Navigation("Parent");
@@ -1616,15 +1686,11 @@ namespace SchoolPro.Infra.Migrations
                     b.HasOne("SchoolPro.Core.Entities.SchoolSubject", "SchoolSubject")
                         .WithMany("TeacherSchoolSubjects")
                         .HasForeignKey("SchoolSubjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
                         .HasConstraintName("school_subject_Id");
 
                     b.HasOne("SchoolPro.Core.Entities.Teacher", "Teacher")
                         .WithMany("TeacherSchoolSubjects")
                         .HasForeignKey("TeacherId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
                         .HasConstraintName("teacher_Id");
 
                     b.Navigation("SchoolSubject");
@@ -1648,15 +1714,11 @@ namespace SchoolPro.Infra.Migrations
                     b.HasOne("SchoolPro.Core.Entities.Role", "Role")
                         .WithMany("UserRoles")
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
                         .HasConstraintName("role_id");
 
                     b.HasOne("SchoolPro.Core.Entities.User", "User")
                         .WithMany("UserRoles")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
                         .HasConstraintName("user_id");
 
                     b.Navigation("Role");

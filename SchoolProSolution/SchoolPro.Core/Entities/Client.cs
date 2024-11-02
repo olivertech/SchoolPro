@@ -17,7 +17,7 @@
         public string? ResponsableCellPhone2 { get; set; }
 
         /// <summary>
-        /// Chave única que identifica um cliente e que irá definir 
+        /// Chave única que identifica um cliente
         /// </summary>
         public Guid ClientKey { get; set; } = Guid.NewGuid();
 

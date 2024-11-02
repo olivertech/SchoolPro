@@ -3,7 +3,7 @@
     /// <summary>
     /// Entidade que armazena o relacionamento do aluno com seus parentes
     /// </summary>
-    public class StudentParent : RelationBase
+    public class StudentParent : EntityBase
     {
         public Guid? StudentId { get; set; }
         public Student? Student { get; set; }

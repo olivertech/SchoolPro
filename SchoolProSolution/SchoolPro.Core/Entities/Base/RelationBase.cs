@@ -1,6 +1,6 @@
 ﻿namespace SchoolPro.Core.Entities.Base
 {
-    public class RelationBase
+    public class RelationBase : MainBase
     {
         public bool IsActive { get; set; } = true;
 

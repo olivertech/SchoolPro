@@ -5,11 +5,10 @@
         public void Configure(EntityTypeBuilder<UserRole> builder)
         {
             //Common columns
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).HasColumnName("id").HasValueGenerator<GuidValueGenerator>();
             builder.Property(x => x.IsActive).HasColumnName("is_active").IsRequired().HasDefaultValue(true);
-            builder.Property(x => x.SchoolKey).HasColumnName("client_school_key");
-
-            //Entity columns
-            builder.HasKey(x => new { x.UserId, x.RoleId});
+            builder.Property(x => x.ClientSchoolKey).HasColumnName("client_school_key");
 
             //Relationship One-To-Many
             builder.HasOne(x => x.Role)

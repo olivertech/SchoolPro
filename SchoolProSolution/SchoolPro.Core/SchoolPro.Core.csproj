@@ -7,7 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
+    <Compile Remove="Entities\Base\MainBase.cs" />
+    <Compile Remove="Entities\Base\RelationBase.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -10,6 +10,7 @@
         public string CNPJ { get; set; } = null!;
         public string? StateRegistration { get; set; }
         public string? CountyRegistration { get; set; }
+        public bool IsBranch { get; set; } = false;
 
         /// <summary>
         /// Chave única que identifica uma escola
