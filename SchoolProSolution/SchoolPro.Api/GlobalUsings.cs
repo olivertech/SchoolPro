@@ -27,4 +27,5 @@ global using System.Security.Cryptography;
 //global using SchoolPro.Api.Helpers;
 //global using SchoolPro.Core.Interfaces;
 global using SchoolPro.Core.Entities;
+global using System.Text.Json;
 //global using SchoolPro.Shared.Interfaces;

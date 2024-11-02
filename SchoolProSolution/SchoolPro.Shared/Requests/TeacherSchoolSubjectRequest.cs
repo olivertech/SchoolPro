@@ -5,10 +5,7 @@
     /// </summary>
     public class TeacherSchoolSubjectRequest : RequestBase, IRequest
     {
-        //Navigation Property
         public Guid? TeacherId { get; set; }
-        public TeacherRequest? Teacher { get; set; }
         public Guid? SchoolSubjectId { get; set; }
-        public SchoolSubjectRequest? SchoolSubject { get; set; }
     }
 }

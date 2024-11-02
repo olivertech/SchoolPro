@@ -6,14 +6,9 @@
     public class StudentGradeRequest : RequestBase, IRequest
     {
         public Guid? StudentId { get; set; }
-        public StudentRequest? Student { get; set; }
         public Guid? SchoolSubjectId { get; set; }
-        public SchoolSubjectRequest? SchoolSubject { get; set; }
         public decimal Grade { get; set; }
-        public DateOnly DateGrade { get; set; } = new DateOnly();
-
-        //Navigation Property
+        public DateOnly DateGrade { get; set; }
         public Guid? StudentClassId { get; set; }
-        public StudentClassRequest? StudentClass { get; set; }
     }
 }

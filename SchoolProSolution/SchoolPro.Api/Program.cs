@@ -1,4 +1,3 @@
-
 namespace SchoolPro.Api
 {
     public class Program
@@ -16,7 +15,11 @@ namespace SchoolPro.Api
                 .AddEndpointsApiExplorer()
                 .AddSwaggerGen()
                 .AddAutoMapper(typeof(Program))
-                .AddControllers();
+                .AddControllers()
+                    .AddJsonOptions(options =>
+                    {
+                        options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower;
+                    });
 
             //=============================
             // Referenciando o appsettings
