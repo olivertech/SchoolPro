@@ -1,4 +1,6 @@
-﻿namespace SchoolPro.Infra.Dependencies
+﻿using SchoolPro.Infra.Repositories;
+
+namespace SchoolPro.Infra.Dependencies
 {
     /// <summary>
     /// Classe estática que concentra as configurações
@@ -15,22 +17,33 @@
                                                     configuration.GetConnectionString("DefaultConnectionString"))
                                                 );
             //Repositories injections
-            //services.AddScoped<IContainerDbRepository, ContainerDbRepository>();
-            //services.AddScoped<ITenantRepository, TenantRepository>();
-            //services.AddScoped<IUserRepository, UserRepository>();
-            //services.AddScoped<IAccessTokenRepository, AccessTokenRepository>();
-            //services.AddScoped<IPortRepository, PortRepository>();
-            //services.AddScoped<IFeatureRepository, FeatureRepository>();
-            //services.AddScoped<IUserFeatureRepository, UserFeatureRepository>();
-            //services.AddScoped<ILogAccessRepository, LogAccessRepository>();
-            //services.AddScoped<IRoleRepository, RoleRepository>();
-            //services.AddScoped<IMenuRepository, MenuRepository>();
-            //services.AddScoped<IRoleMenuRepository, RoleMenuRepository>();
-            //services.AddScoped<ISecretRepository, SecretRepository>();
+            services.AddScoped<IClientRepository, ClientRepository>();
+            services.AddScoped<IContactRepository, ContactRepository>();
+            services.AddScoped<IDocumentRepository, DocumentRepository>();
+            services.AddScoped<IDocumentTypeRepository, DocumentTypeRepository>();
+            services.AddScoped<IFeatureRepository, FeatureRepository>();
+            services.AddScoped<IFeatureRoleRepository, FeatureRoleRepository>();
+            services.AddScoped<IFeeTypeRepository, FeeTypeRepository>();
+            services.AddScoped<IParentRepository, ParentRepository>();
+            services.AddScoped<IRoleRepository, RoleRepository>();
+            services.AddScoped<IRoomRepository, RoomRepository>();
+            services.AddScoped<ISchoolCalendarRepository, SchoolCalendarRepository>();
+            services.AddScoped<ISchoolRepository, SchoolRepository>();
+            services.AddScoped<ISchoolEnrollmentRepository, SchoolEnrollmentRepository>();
+            services.AddScoped<ISchoolFeeRepository, SchoolFeeRepository>();
+            services.AddScoped<ISchoolSubjectRepository, SchoolSubjectRepository>();
+            services.AddScoped<ISchoolYearRepository, SchoolYearRepository>();
+            services.AddScoped<IStudentRepository, StudentRepository>();
+            services.AddScoped<IStudentGradeRepository, StudentGradeRepository>();
+            services.AddScoped<IStudentClassRepository, StudentClassRepository>();
+            services.AddScoped<IStudentParentRepository, StudentParentRepository>();
+            services.AddScoped<ITeacherRepository, TeacherRepository>();
+            services.AddScoped<ITeacherSchoolSubjectRepository, TeacherSchoolSubjectRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserRoleRepository, UserRoleRepository>();
 
             ////Others
-            //services.AddScoped<IUnitOfWork, UnitOfWork>();
-            //services.AddScoped<IPortFinder, PortFinderHelper>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             return services;
         }

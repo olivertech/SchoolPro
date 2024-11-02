@@ -24,6 +24,7 @@
         private IStudentGradeRepository? _studentGradeRepository;
         private IStudentRepository? _studentRepository;
         private ITeacherRepository? _teacherRepository;
+        private ITeacherSchoolSubjectRepository? _teacherSchoolSubjectRepository;
         private IUserRoleRepository? _userRoleRepository;
         private IUserRepository? _userRepository;
 
@@ -71,10 +72,13 @@
         public IStudentRepository StudentRepository => _studentRepository ?? new StudentRepository(_context!);
 
         public ITeacherRepository TeacherRepository => _teacherRepository ?? new TeacherRepository(_context!);
+        
+        public ITeacherSchoolSubjectRepository TeacherSchoolSubjectRepository => _teacherSchoolSubjectRepository ?? new TeacherSchoolSubjectRepository(_context!);
 
         public IUserRoleRepository UserRoleRepository => _userRoleRepository ?? new UserRoleRepository(_context!);
 
         public IUserRepository UserRepository => _userRepository ?? new UserRepository(_context!);
+
 
         public async Task CommitAsync()
         {

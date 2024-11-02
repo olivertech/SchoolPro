@@ -22,6 +22,7 @@
         IStudentGradeRepository StudentGradeRepository { get; }
         IStudentRepository StudentRepository { get; }
         ITeacherRepository TeacherRepository { get; }
+        ITeacherSchoolSubjectRepository TeacherSchoolSubjectRepository { get; }
         IUserRoleRepository UserRoleRepository { get; }
         IUserRepository UserRepository { get; }
 
