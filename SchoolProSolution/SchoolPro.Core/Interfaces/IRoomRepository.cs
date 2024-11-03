@@ -1,6 +1,6 @@
 ﻿namespace SchoolPro.Core.Interfaces
 {
-    public interface IRoomRepository : IRepositoryBase<Room>
+    public interface IRoomRepository : IRepositoryAuthorizedBase<Room>
     {
     }
 }

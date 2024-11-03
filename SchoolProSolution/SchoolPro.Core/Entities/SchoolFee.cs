@@ -3,7 +3,7 @@
     /// <summary>
     /// Entidade que armazena os dados de pagamentos em geral
     /// </summary>
-    public class SchoolFee : EntityBase
+    public class SchoolFee : AuthorizedBase
     {
         public decimal Value { get; set; }
         public DateOnly DueDate { get; set; }

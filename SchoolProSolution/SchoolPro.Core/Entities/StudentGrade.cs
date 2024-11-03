@@ -3,7 +3,7 @@
     /// <summary>
     /// Entidade que armazena as notas do estudante
     /// </summary>
-    public class StudentGrade : EntityBase
+    public class StudentGrade : AuthorizedBase
     {
         public Guid? StudentId { get; set; }
         public Student? Student { get; set; }

@@ -3,7 +3,7 @@
     /// <summary>
     /// Entidade que armazena os dados de uma escola
     /// </summary>
-    public class School : DefaultBase
+    public class School : AnonymousBase
     {
         public string Name { get; set; } = null!;
         public string? Description { get; set; }

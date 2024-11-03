@@ -1,12 +1,12 @@
 ﻿namespace SchoolPro.Infra.Repositories.Base
 {
-    public class RepositoryBase<T> : IRepositoryBase<T>
-        where T : DefaultBase
+    public class RepositoryAnonymousBase<T> : IRepositoryAnonymousBase<T>
+        where T : AnonymousBase
     {
         protected readonly SchoolProDbContext? _context;
         protected readonly DbSet<T>? _dbSet;
 
-        public RepositoryBase([NotNull] SchoolProDbContext context)
+        public RepositoryAnonymousBase([NotNull] SchoolProDbContext context)
         {
             _context = context;
             _dbSet = _context.Set<T>();
@@ -81,9 +81,9 @@
             {
                 var list = await _dbSet!
                                 .AsNoTracking()
+                                .Where(predicate)
                                 .Skip((pageNumber - 1) * pageSize)
                                 .Take(pageSize)
-                                .Where(predicate)
                                 .ToListAsync();
 
                 return list ?? Enumerable.Empty<T>();

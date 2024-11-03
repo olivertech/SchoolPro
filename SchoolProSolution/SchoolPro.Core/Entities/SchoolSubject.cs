@@ -3,7 +3,7 @@
     /// <summary>
     /// Ebtidade que armazena os dados de uma matéria
     /// </summary>
-    public class SchoolSubject : EntityBase
+    public class SchoolSubject : AuthorizedBase
     {
         public string Title { get; set; } = null!;
         public string Description { get; set; } = null!;

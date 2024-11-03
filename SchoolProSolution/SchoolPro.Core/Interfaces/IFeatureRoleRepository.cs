@@ -1,6 +1,6 @@
 ﻿namespace SchoolPro.Core.Interfaces
 {
-    public interface IFeatureRoleRepository : IRepositoryBase<FeatureRole>
+    public interface IFeatureRoleRepository : IRepositoryAuthorizedBase<FeatureRole>
     {
     }
 }

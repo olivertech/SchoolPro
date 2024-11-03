@@ -18,7 +18,7 @@
             builder.Property(x => x.Birthdate).HasColumnName("birthdate").IsRequired(false);
             builder.Property(x => x.Gender).HasColumnName("gender").HasMaxLength(1).IsRequired(false);
             builder.Property(x => x.Kinship).HasColumnName("kinship").HasMaxLength(50).IsRequired();
-            builder.Property(x => x.ContactId).HasColumnName("address_id").IsRequired(false);
+            builder.Property(x => x.ContactId).HasColumnName("contact_id").IsRequired(false);
 
             //Relationship One-To-Many
             builder.HasMany(d => d.Documents)

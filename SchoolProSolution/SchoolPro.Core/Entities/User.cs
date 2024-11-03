@@ -4,7 +4,7 @@
     /// Entidade que armazena os dados dos usuários do sistema
     /// e seu tipo de acesso, por meio da role
     /// </summary>
-    public class User : EntityBase
+    public class User : AnonymousBase
     {
         public string? Name { get; set; }
         public string? Email { get; set; }
@@ -16,7 +16,7 @@
         public Client? Client { get; set; }
         public Guid? AccessTokenId { get; set; }
         public AccessToken? AccessToken { get; set; }
-
-        public IList<UserRole>? UserRoles { get; set; }
+        public Guid? RoleId { get; set; }
+        public Role? Role { get; set; }
     }
 }

@@ -7,11 +7,10 @@
     /// acessar um conjunto de funcionalidades
     /// dispostas no menu do sistema.
     /// </summary>
-    public class Role : EntityBase
+    public class Role : AuthorizedBase
     {
         public string Name { get; set; } = null!;
         public string? Description { get; set; }
-        public IList<UserRole>? UserRoles { get; set; }
         public IList<FeatureRole>? FeaturesRole { get; set; }
     }
 }

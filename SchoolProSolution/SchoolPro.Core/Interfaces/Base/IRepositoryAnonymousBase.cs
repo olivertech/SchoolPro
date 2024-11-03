@@ -1,7 +1,7 @@
 ﻿namespace SchoolPro.Core.Interfaces.Base
 {
-    public interface IRepositoryBase<T> 
-        where T : DefaultBase
+    public interface IRepositoryAnonymousBase<T> 
+        where T : AnonymousBase
     {
         Task<IEnumerable<T>?> GetAll();
         Task<T?> GetById(Guid? id);

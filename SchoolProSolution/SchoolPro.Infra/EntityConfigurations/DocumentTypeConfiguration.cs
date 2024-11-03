@@ -16,6 +16,7 @@
             //Entity columns
             builder.Property(x => x.Name).HasColumnName("name").HasMaxLength(50).IsRequired();
             builder.Property(x => x.Description).HasColumnName("description").HasMaxLength(500).IsRequired(false);
+            builder.Property(x => x.Icone).HasColumnName("icone").HasMaxLength(50).IsRequired(false);
 
             builder.ToTable("Document_Type");
 

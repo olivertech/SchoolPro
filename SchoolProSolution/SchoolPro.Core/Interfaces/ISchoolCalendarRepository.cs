@@ -1,6 +1,6 @@
 ﻿namespace SchoolPro.Core.Interfaces
 {
-    public interface ISchoolCalendarRepository : IRepositoryBase<SchoolCalendar>
+    public interface ISchoolCalendarRepository : IRepositoryAuthorizedBase<SchoolCalendar>
     {
     }
 }

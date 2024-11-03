@@ -10,6 +10,7 @@
         IFeatureRepository FeatureRepository { get; }
         IFeatureRoleRepository FeatureRoleRepository { get; }
         IFeeTypeRepository FeeTypeRepository { get; }
+        ILogAccessRepository LogAccessRepository { get; }
         IParentRepository ParentRepository { get; }
         IRoleRepository RoleRepository { get; }
         IRoomRepository RoomRepository { get; }
@@ -24,7 +25,7 @@
         IStudentRepository StudentRepository { get; }
         ITeacherRepository TeacherRepository { get; }
         ITeacherSchoolSubjectRepository TeacherSchoolSubjectRepository { get; }
-        IUserRoleRepository UserRoleRepository { get; }
+        //IUserRoleRepository UserRoleRepository { get; }
         IUserRepository UserRepository { get; }
 
         Task CommitAsync();

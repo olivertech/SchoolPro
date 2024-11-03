@@ -13,7 +13,7 @@
     /// - O horario que termina a aula
     /// 
     /// </summary>
-    public class SchoolCalendar : EntityBase
+    public class SchoolCalendar : AuthorizedBase
     {
         public string? Description { get; set; }
         public DateOnly Date { get; set; } = new DateOnly();

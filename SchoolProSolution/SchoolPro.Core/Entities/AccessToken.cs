@@ -5,7 +5,7 @@
     /// dos usuários que acessam o sistema
     /// com a definição de um período de validade
     /// </summary>
-    public class AccessToken : EntityBase
+    public class AccessToken : AuthorizedBase
     {
         public string? Token { get; set; }
         public TimeOnly? TimedAt { get; set; }

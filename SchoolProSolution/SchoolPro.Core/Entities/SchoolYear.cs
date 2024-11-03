@@ -3,7 +3,7 @@
     /// <summary>
     /// Entidade que armazena os dados do ano letivo
     /// </summary>
-    public class SchoolYear : EntityBase
+    public class SchoolYear : AuthorizedBase
     {
         public int Year { get; set; } = DateTime.Today.Year;
         public string? Description { get; set; }

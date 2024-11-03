@@ -1,6 +1,6 @@
 ﻿namespace SchoolPro.Infra.Repositories
 {
-    public class StudentParentRepository : RepositoryBase<StudentParent>, IStudentParentRepository
+    public class StudentParentRepository : RepositoryAuthorizedBase<StudentParent>, IStudentParentRepository
     {
         public StudentParentRepository([NotNull] SchoolProDbContext context) : base(context)
         {

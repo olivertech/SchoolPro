@@ -1,6 +1,6 @@
 ﻿namespace SchoolPro.Core.Interfaces
 {
-    public interface IStudentRepository : IRepositoryBase<Student>
+    public interface IStudentRepository : IRepositoryAuthorizedBase<Student>
     {
     }
 }

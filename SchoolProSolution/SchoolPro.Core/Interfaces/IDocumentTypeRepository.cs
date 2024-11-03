@@ -1,6 +1,6 @@
 ﻿namespace SchoolPro.Core.Interfaces
 {
-    public interface IDocumentTypeRepository : IRepositoryBase<DocumentType>
+    public interface IDocumentTypeRepository : IRepositoryAuthorizedBase<DocumentType>
     {
     }
 }

@@ -4,7 +4,7 @@
     /// Entidade que armazena os dados dos responsáveis
     /// pelo aluno, e o seu grau de parentesco
     /// </summary>
-    public class Parent : EntityBase
+    public class Parent : AuthorizedBase
     {
         public string? Name { get; set; } = null!;
         public DateOnly? Birthdate { get; set; }

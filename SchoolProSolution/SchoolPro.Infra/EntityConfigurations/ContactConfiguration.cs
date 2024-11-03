@@ -14,8 +14,8 @@
             builder.Property(x => x.ClientSchoolKey).HasColumnName("client_school_key").IsRequired();
 
             //Entity columns
-            builder.Property(x => x.Telephone).HasColumnName("telephone").HasMaxLength(10).IsRequired(false);
-            builder.Property(x => x.CellPhone).HasColumnName("cellphone").HasMaxLength(11).IsRequired(false);
+            builder.Property(x => x.Telephone).HasColumnName("telephone").HasMaxLength(14).IsRequired(false);
+            builder.Property(x => x.CellPhone).HasColumnName("cellphone").HasMaxLength(15).IsRequired(false);
             builder.Property(x => x.Email).HasColumnName("email").HasMaxLength(50).IsRequired(false);
             builder.Property(x => x.Facebook).HasColumnName("facebook").HasMaxLength(100).IsRequired(false);
             builder.Property(x => x.Instagram).HasColumnName("instagram").HasMaxLength(100).IsRequired(false);
@@ -27,7 +27,7 @@
             builder.Property(x => x.Neighborhood).HasColumnName("neighborhood").HasMaxLength(250).IsRequired(false);
             builder.Property(x => x.City).HasColumnName("city").HasMaxLength(250).IsRequired(false);
             builder.Property(x => x.State).HasColumnName("state").HasMaxLength(25).IsRequired(false);
-            builder.Property(x => x.PostalCode).HasColumnName("postal_code").HasMaxLength(8).IsRequired(false);
+            builder.Property(x => x.PostalCode).HasColumnName("postal_code").HasMaxLength(9).IsRequired(false);
 
             builder.ToTable("Contact");
 

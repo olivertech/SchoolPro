@@ -1,6 +1,6 @@
 ﻿namespace SchoolPro.Infra.Repositories
 {
-    public class RoomRepository : RepositoryBase<Room>, IRoomRepository
+    public class RoomRepository : RepositoryAuthorizedBase<Room>, IRoomRepository
     {
         public RoomRepository([NotNull] SchoolProDbContext context) : base(context)
         {

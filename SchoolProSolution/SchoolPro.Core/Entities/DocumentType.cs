@@ -5,7 +5,7 @@
     /// armazenados no sistema, desde imagens, pdfs, vídeos,
     /// planilhas e muito mais.
     /// </summary>
-    public class DocumentType : EntityBase
+    public class DocumentType : AuthorizedBase
     {
         public string Name { get; set; } = null!;
         public string? Description { get; set; }

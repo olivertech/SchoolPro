@@ -9,6 +9,25 @@
   <ItemGroup>
     <Compile Remove="Entities\Base\MainBase.cs" />
     <Compile Remove="Entities\Base\RelationBase.cs" />
+    <Compile Remove="Entities\FeeType.cs" />
+    <Compile Remove="Entities\LogAccess.cs" />
+    <Compile Remove="Entities\Room.cs" />
+    <Compile Remove="Entities\SchoolCalendar.cs" />
+    <Compile Remove="Entities\SchoolEnrollment.cs" />
+    <Compile Remove="Entities\SchoolFee.cs" />
+    <Compile Remove="Entities\StudentClass.cs" />
+    <Compile Remove="Entities\StudentGrade.cs" />
+    <Compile Remove="Entities\UserRole.cs" />
+    <Compile Remove="Interfaces\IFeeTypeRepository.cs" />
+    <Compile Remove="Interfaces\ILogAccessRepository.cs" />
+    <Compile Remove="Interfaces\IRoomRepository.cs" />
+    <Compile Remove="Interfaces\ISchoolCalendarRepository.cs" />
+    <Compile Remove="Interfaces\ISchoolEnrollmentRepository.cs" />
+    <Compile Remove="Interfaces\ISchoolFeeRepository.cs" />
+    <Compile Remove="Interfaces\IStudentClassRepository.cs" />
+    <Compile Remove="Interfaces\IStudentGradeRepository.cs" />
+    <Compile Remove="Interfaces\IUnitOfWork.cs" />
+    <Compile Remove="Interfaces\IUserRoleRepository.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -3,7 +3,7 @@
     /// <summary>
     /// Entidade quearmazena os dados das matrículas escolares
     /// </summary>
-    public class SchoolEnrollment : EntityBase
+    public class SchoolEnrollment : AuthorizedBase
     {
         public string Enrollment { get; set; } = null!;
         public bool Approved { get; set; }

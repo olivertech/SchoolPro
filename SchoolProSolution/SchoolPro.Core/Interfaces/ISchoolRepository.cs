@@ -1,6 +1,6 @@
 ﻿namespace SchoolPro.Core.Interfaces
 {
-    public interface ISchoolRepository : IRepositoryBase<School>
+    public interface ISchoolRepository : IRepositoryAnonymousBase<School>
     {
     }
 }

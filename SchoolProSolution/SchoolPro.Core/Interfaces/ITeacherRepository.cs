@@ -1,6 +1,6 @@
 ﻿namespace SchoolPro.Core.Interfaces
 {
-    public interface ITeacherRepository : IRepositoryBase<Teacher>
+    public interface ITeacherRepository : IRepositoryAuthorizedBase<Teacher>
     {
     }
 }

@@ -3,7 +3,7 @@
     /// <summary>
     /// Entidade que armazena o relacionamento dos professores com as matérias que ele leciona
     /// </summary>
-    public class TeacherSchoolSubject : EntityBase
+    public class TeacherSchoolSubject : AuthorizedBase
     {
         //Navigation Property
         public Guid? TeacherId { get; set; }

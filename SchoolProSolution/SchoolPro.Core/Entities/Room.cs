@@ -3,7 +3,7 @@
     /// <summary>
     /// Entidade que armazena os dados de uma sala de aula
     /// </summary>
-    public class Room : EntityBase
+    public class Room : AuthorizedBase
     {
         public string Name { get; set; } = null!;
         public string? Description { get; set; }

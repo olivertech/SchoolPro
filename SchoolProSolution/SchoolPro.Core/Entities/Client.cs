@@ -7,7 +7,7 @@
     /// Um cliente pode ter uma ou mais escolas sendo gerenciadas
     /// por ele no sistema
     /// </summary>
-    public class Client : DefaultBase
+    public class Client : AnonymousBase
     {
         public string Name { get; set; } = null!;
         public string? Description { get; set; }

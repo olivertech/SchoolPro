@@ -5,7 +5,7 @@
     /// no sistema, e que podem ser acessados pelos diversos
     /// tipos de perfis de acesso.
     /// </summary>
-    public class Feature : EntityBase
+    public class Feature : AuthorizedBase
     {
         public string Name { get; set; } = null!;
         public string? Description { get; set; }

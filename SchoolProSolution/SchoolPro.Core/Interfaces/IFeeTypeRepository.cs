@@ -1,6 +1,6 @@
 ﻿namespace SchoolPro.Core.Interfaces
 {
-    public interface IFeeTypeRepository : IRepositoryBase<FeeType>
+    public interface IFeeTypeRepository : IRepositoryAuthorizedBase<FeeType>
     {
     }
 }

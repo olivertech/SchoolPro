@@ -4,7 +4,7 @@
     /// Entidade que armazena todos os documentos associados
     /// a alunos, parentes, escolas e professores
     /// </summary>
-    public class Document : EntityBase
+    public class Document : AuthorizedBase
     {
         public string? Title { get; set; } = null!;
         public string? Description { get; set; }

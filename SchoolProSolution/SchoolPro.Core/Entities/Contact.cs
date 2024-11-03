@@ -4,7 +4,7 @@
     /// Entidade que armazena todos os endereços associados
     /// a alunos, responsáveis, escolas e professores
     /// </summary>
-    public class Contact : EntityBase
+    public class Contact : AuthorizedBase
     {
         public string? Telephone { get; set; }
         public string? CellPhone { get; set; }

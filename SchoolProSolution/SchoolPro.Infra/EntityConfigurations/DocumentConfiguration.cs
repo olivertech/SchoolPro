@@ -21,7 +21,7 @@
             builder.Property(x => x.SchoolId).HasColumnName("school_id");
             builder.Property(x => x.StudentId).HasColumnName("student_id");
             builder.Property(x => x.TeacherId).HasColumnName("teacher_id");
-            builder.Property(x => x.DocumentTypeId).HasColumnName("document_type_id");
+            builder.Property(x => x.DocumentTypeId).HasColumnName("document_type_id").IsRequired();
 
             builder.ToTable("Document");
 

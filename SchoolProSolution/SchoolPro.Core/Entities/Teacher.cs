@@ -3,7 +3,7 @@
     /// <summary>
     /// Entidade que armazena os dados dos professores
     /// </summary>
-    public class Teacher : EntityBase
+    public class Teacher : AuthorizedBase
     {
         public string Name { get; set; } = null!;
         public string? Description { get; set; }

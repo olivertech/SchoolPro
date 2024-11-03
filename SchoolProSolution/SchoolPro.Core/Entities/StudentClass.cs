@@ -4,7 +4,7 @@
     /// Entidade que armazena os dados da classe
     /// onde estão agrupados os estudantes
     /// </summary>
-    public class StudentClass : EntityBase
+    public class StudentClass : AuthorizedBase
     {
         public string Name { get; set; } = null!;
         public string? Description { get; set; }

@@ -1,15 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SchoolPro.Infra.Repositories
+﻿namespace SchoolPro.Infra.Repositories
 {
-    public class AccessTokenRepository : RepositoryBase<AccessToken>, IAccessTokenRepository
+    public class AccessTokenRepository : RepositoryAuthorizedBase<AccessToken>, IAccessTokenRepository
     {
         public AccessTokenRepository([NotNull] SchoolProDbContext context) : base(context)
         {
+        }
+
+        public async Task<AccessToken?> GetToken(User user)
+        {
+            if (user == null)
+                return null;
+
+            return await _context!.AccessTokens
+                .Where(x => x.Id == user.AccessTokenId)
+                .FirstOrDefaultAsync();
         }
     }
 }
