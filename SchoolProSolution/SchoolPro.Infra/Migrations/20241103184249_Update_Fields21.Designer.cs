@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SchoolPro.Infra.Context;
@@ -11,9 +12,11 @@ using SchoolPro.Infra.Context;
 namespace SchoolPro.Infra.Migrations
 {
     [DbContext(typeof(SchoolProDbContext))]
-    partial class SchoolProDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241103184249_Update_Fields21")]
+    partial class Update_Fields21
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1378,56 +1381,6 @@ namespace SchoolPro.Infra.Migrations
                     b.ToTable("Student_Parent", (string)null);
                 });
 
-            modelBuilder.Entity("SchoolPro.Core.Entities.SystemLog", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid")
-                        .HasColumnName("id");
-
-                    b.Property<string>("Action")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("action");
-
-                    b.Property<DateOnly>("CreatedAt")
-                        .HasColumnType("date")
-                        .HasColumnName("created_at");
-
-                    b.Property<DateOnly?>("DeletedAt")
-                        .HasColumnType("date")
-                        .HasColumnName("deleted_at");
-
-                    b.Property<bool>("IsActive")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean")
-                        .HasDefaultValue(true)
-                        .HasColumnName("is_active");
-
-                    b.Property<string>("Json")
-                        .HasColumnType("jsonb")
-                        .HasColumnName("json");
-
-                    b.Property<TimeOnly?>("TimedAt")
-                        .IsRequired()
-                        .HasColumnType("time without time zone")
-                        .HasColumnName("timed_at");
-
-                    b.Property<DateOnly?>("UpdatedAt")
-                        .HasColumnType("date")
-                        .HasColumnName("updated_at");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("user_id");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("System_Log", (string)null);
-                });
-
             modelBuilder.Entity("SchoolPro.Core.Entities.Teacher", b =>
                 {
                     b.Property<Guid>("Id")
@@ -1848,17 +1801,6 @@ namespace SchoolPro.Infra.Migrations
                     b.Navigation("Parent");
 
                     b.Navigation("Student");
-                });
-
-            modelBuilder.Entity("SchoolPro.Core.Entities.SystemLog", b =>
-                {
-                    b.HasOne("SchoolPro.Core.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("SchoolPro.Core.Entities.Teacher", b =>

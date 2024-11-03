@@ -12,9 +12,7 @@
 
         //Navigation Properties
         public Guid? SchoolEnrollmentId { get; set; }
-        public SchoolEnrollment? SchoolEnrollment { get; set; }
-        public Guid? DocumentId { get; set; }
-        public Document? Document { get; set; }
+        //public SchoolEnrollment? SchoolEnrollment { get; set; }
         public Guid? FeeTypeId { get; set; }
         public FeeType? FeeType { get; set; }
     }

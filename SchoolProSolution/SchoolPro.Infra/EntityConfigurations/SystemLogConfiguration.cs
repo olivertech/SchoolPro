@@ -1,8 +1,8 @@
 ﻿namespace SchoolPro.Infra.EntityConfigurations
 {
-    public class LogAccessConfiguration : IEntityTypeConfiguration<LogAccess>
+    public class SystemLogConfiguration : IEntityTypeConfiguration<SystemLog>
     {
-        public void Configure(EntityTypeBuilder<LogAccess> builder)
+        public void Configure(EntityTypeBuilder<SystemLog> builder)
         {
             //Common columns
             builder.HasKey(x => x.Id);
@@ -11,13 +11,14 @@
             builder.Property(x => x.CreatedAt).HasColumnName("created_at").IsRequired();
             builder.Property(x => x.UpdatedAt).HasColumnName("updated_at");
             builder.Property(x => x.DeletedAt).HasColumnName("deleted_at");
-            //builder.Property(x => x.ClientSchoolKey).HasColumnName("client_school_key").IsRequired();
 
             //Entity columns
+            builder.Property(x => x.Action).HasColumnName("action").IsRequired();
+            builder.Property(x => x.Json).HasColumnName("json").HasColumnType("jsonb").IsRequired(false);
             builder.Property(x => x.UserId).HasColumnName("user_id").IsRequired();
             builder.Property(x => x.TimedAt).HasColumnName("timed_at").IsRequired();
 
-            builder.ToTable("Log_Access");
+            builder.ToTable("System_Log");
 
             //Global filter
             builder.HasQueryFilter(x => x.IsActive);

@@ -14,8 +14,8 @@
         public Guid? ContactId { get; set; }
         public Contact? Contact { get; set; }
 
-        //public Guid? StudentClassId { get; set; }
-        //public StudentClass? StudentClass { get; set; }
+        public Guid? StudentClassId { get; set; }
+        public StudentClass? StudentClass { get; set; }
 
         //One-To-many
         public IList<Document>? Documents { get; set; }

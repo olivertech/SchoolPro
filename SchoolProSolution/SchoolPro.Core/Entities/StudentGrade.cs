@@ -5,15 +5,19 @@
     /// </summary>
     public class StudentGrade : AuthorizedBase
     {
-        public Guid? StudentId { get; set; }
-        public Student? Student { get; set; }
-        public Guid? SchoolSubjectId { get; set; }
-        public SchoolSubject? SchoolSubject { get; set; }
+        public string? Description { get; set; }
+        public decimal MinimalGrade { get; set; }
         public decimal Grade { get; set; }
         public DateOnly DateGrade { get; set; } = new DateOnly();
 
         //Navigation Property
+        public Guid? StudentId { get; set; }
+        public Student? Student { get; set; }
+        public Guid? SchoolSubjectId { get; set; }
+        public SchoolSubject? SchoolSubject { get; set; }
         public Guid? StudentClassId { get; set; }
         public StudentClass? StudentClass { get; set; }
+        public Guid? SchoolEnrollmentId { get; set; }
+        public SchoolEnrollment? SchoolEnrollment { get; set; }
     }
 }

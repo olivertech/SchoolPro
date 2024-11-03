@@ -18,8 +18,7 @@
             builder.Property(x => x.DueDate).HasColumnName("due_date");
             builder.Property(x => x.PaymentDate).HasColumnName("payment_date");
             builder.Property(x => x.StatusFee).HasColumnName("status_fee");
-            builder.Property(x => x.SchoolEnrollmentId).HasColumnName("school_enrollment_id");
-            builder.Property(x => x.DocumentId).HasColumnName("document_id");
+            //builder.Property(x => x.SchoolEnrollmentId).HasColumnName("school_enrollment_id");
             builder.Property(x => x.FeeTypeId).HasColumnName("fee_type_id");
 
             builder.ToTable("School_Fee");

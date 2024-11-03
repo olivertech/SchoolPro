@@ -19,8 +19,7 @@
             builder.Property(x => x.Gender).HasColumnName("gender").HasMaxLength(1).IsRequired(false);
             builder.Property(x => x.Description).HasColumnName("description").HasMaxLength(1).IsRequired(false);
             builder.Property(x => x.ContactId).HasColumnName("contact_id");
-
-            //builder.Property(x => x.StudentClassId).HasColumnName("student_class_id");
+            builder.Property(x => x.StudentClassId).HasColumnName("student_class_id");
 
             //Relationship One-To-Many
             builder.HasMany(d => d.Documents)

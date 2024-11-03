@@ -1,7 +1,7 @@
 ﻿namespace SchoolPro.Core.Entities
 {
     /// <summary>
-    /// Entidade quearmazena os dados das matrículas escolares
+    /// Entidade que armazena as matrículas escolares
     /// </summary>
     public class SchoolEnrollment : AuthorizedBase
     {
@@ -15,8 +15,5 @@
 
         public Guid? SchoolYearId { get; set; }
         public SchoolYear? SchoolYear { get; set; }
-
-        public Guid? DocumentId { get; set; }
-        public Document? Document { get; set; }
     }
 }

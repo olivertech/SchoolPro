@@ -14,12 +14,15 @@
             builder.Property(x => x.ClientSchoolKey).HasColumnName("client_school_key").IsRequired();
 
             //Entity columns
+            builder.Property(x => x.Description).HasColumnName("description").IsRequired();
             builder.Property(x => x.Grade).HasColumnName("grade").IsRequired();
+            builder.Property(x => x.MinimalGrade).HasColumnName("minimal_grade").IsRequired().HasDefaultValue(5);
             builder.Property(x => x.DateGrade).HasColumnName("date_grade").IsRequired();
 
             builder.Property(x => x.SchoolSubjectId).HasColumnName("school_subject_id").IsRequired();
             builder.Property(x => x.StudentId).HasColumnName("student_id").IsRequired();
             builder.Property(x => x.StudentClassId).HasColumnName("student_class_id").IsRequired();
+            builder.Property(x => x.SchoolEnrollmentId).HasColumnName("school_enrollment_id").IsRequired();
 
             builder.ToTable("Student_Grade");
 

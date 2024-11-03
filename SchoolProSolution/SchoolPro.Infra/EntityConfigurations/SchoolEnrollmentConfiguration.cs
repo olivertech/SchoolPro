@@ -19,7 +19,6 @@
             builder.Property(x => x.FinalGrade).HasColumnName("final_grade").HasMaxLength(10).IsRequired(false);
             builder.Property(x => x.StudentId).HasColumnName("student_id");
             builder.Property(x => x.SchoolYearId).HasColumnName("school_year_id");
-            builder.Property(x => x.DocumentId).HasColumnName("document_id");
 
             builder.ToTable("School_Enrollment");
 

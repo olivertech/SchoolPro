@@ -7,23 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="EntityConfigurations\FeeTypeConfiguration.cs" />
-    <Compile Remove="EntityConfigurations\LogAccessConfiguration.cs" />
-    <Compile Remove="EntityConfigurations\RoomConfiguration.cs" />
-    <Compile Remove="EntityConfigurations\SchoolCalendarConfiguration.cs" />
-    <Compile Remove="EntityConfigurations\SchoolEnrollmentConfiguration.cs" />
-    <Compile Remove="EntityConfigurations\SchoolFeeConfiguration.cs" />
-    <Compile Remove="EntityConfigurations\StudentClassConfiguration.cs" />
-    <Compile Remove="EntityConfigurations\StudentGradeConfiguration.cs" />
     <Compile Remove="EntityConfigurations\UserRoleConfiguration.cs" />
-    <Compile Remove="Repositories\FeeTypeRepository.cs" />
-    <Compile Remove="Repositories\LogAccessRepository.cs" />
-    <Compile Remove="Repositories\RoomRepository.cs" />
-    <Compile Remove="Repositories\SchoolCalendarRepository.cs" />
-    <Compile Remove="Repositories\SchoolEnrollmentRepository.cs" />
-    <Compile Remove="Repositories\SchoolFeeRepository.cs" />
-    <Compile Remove="Repositories\StudentClassRepository.cs" />
-    <Compile Remove="Repositories\StudentGradeRepository.cs" />
     <Compile Remove="Repositories\UnitOfWork.cs" />
     <Compile Remove="Repositories\UserRoleRepository.cs" />
   </ItemGroup>
