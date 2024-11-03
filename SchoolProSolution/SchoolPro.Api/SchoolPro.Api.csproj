@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Compile Remove="Auth\SecurityTokenDescriptor.cs" />
-    <Compile Remove="Controllers\Base\ControllerBase.cs" />
     <Compile Remove="Controllers\LoginController.cs" />
   </ItemGroup>
 
@@ -40,7 +39,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\Base\" />
     <Folder Include="Jobs\" />
     <Folder Include="Mappings\" />
     <Folder Include="Helpers\" />

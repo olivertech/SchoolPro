@@ -12,7 +12,7 @@
         private IFeatureRepository? _featureRepository;
         private IFeatureRoleRepository? _featureRoleRepository;
         private IFeeTypeRepository? _feeTypeRepository;
-        private ILogAccessRepository? _logAccessRepository;
+        private ISystemLogRepository? _systemLogRepository;
         private IParentRepository? _parentRepository;
         private IRoleRepository? _roleRepository;
         private IRoomRepository? _roomRepository;
@@ -27,7 +27,6 @@
         private IStudentRepository? _studentRepository;
         private ITeacherRepository? _teacherRepository;
         private ITeacherSchoolSubjectRepository? _teacherSchoolSubjectRepository;
-        //private IUserRoleRepository? _userRoleRepository;
         private IUserRepository? _userRepository;
 
         public UnitOfWork(SchoolProDbContext context)
@@ -51,7 +50,7 @@
 
         public IFeeTypeRepository FeeTypeRepository => _feeTypeRepository ?? new FeeTypeRepository(_context!);
 
-        public ILogAccessRepository LogAccessRepository => _logAccessRepository ?? new LogAccessRepository(_context!);
+        public ISystemLogRepository SystemLogRepository => _systemLogRepository ?? new SystemLogRepository(_context!);
 
         public IParentRepository ParentRepository => _parentRepository ?? new ParentRepository(_context!);
 
@@ -80,8 +79,6 @@
         public ITeacherRepository TeacherRepository => _teacherRepository ?? new TeacherRepository(_context!);
         
         public ITeacherSchoolSubjectRepository TeacherSchoolSubjectRepository => _teacherSchoolSubjectRepository ?? new TeacherSchoolSubjectRepository(_context!);
-
-        //public IUserRoleRepository UserRoleRepository => _userRoleRepository ?? new UserRoleRepository(_context!);
 
         public IUserRepository UserRepository => _userRepository ?? new UserRepository(_context!);
 

@@ -10,7 +10,6 @@
     <Compile Remove="Entities\Base\MainBase.cs" />
     <Compile Remove="Entities\Base\RelationBase.cs" />
     <Compile Remove="Entities\UserRole.cs" />
-    <Compile Remove="Interfaces\IUnitOfWork.cs" />
     <Compile Remove="Interfaces\IUserRoleRepository.cs" />
   </ItemGroup>
 

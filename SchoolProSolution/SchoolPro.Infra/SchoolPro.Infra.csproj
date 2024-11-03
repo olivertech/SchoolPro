@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Compile Remove="EntityConfigurations\UserRoleConfiguration.cs" />
-    <Compile Remove="Repositories\UnitOfWork.cs" />
     <Compile Remove="Repositories\UserRoleRepository.cs" />
   </ItemGroup>
 
