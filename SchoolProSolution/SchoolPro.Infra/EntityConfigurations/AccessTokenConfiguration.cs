@@ -1,8 +1,8 @@
 ﻿namespace SchoolPro.Infra.EntityConfigurations
 {
-    public class FeatureRoleConfiguration : IEntityTypeConfiguration<FeatureRole>
+    public class AccessTokenConfiguration : IEntityTypeConfiguration<AccessToken>
     {
-        public void Configure(EntityTypeBuilder<FeatureRole> builder)
+        public void Configure(EntityTypeBuilder<AccessToken> builder)
         {
             //Common columns
             builder.HasKey(x => x.Id);
@@ -13,22 +13,12 @@
             builder.Property(x => x.DeletedAt).HasColumnName("deleted_at");
             builder.Property(x => x.ClientSchoolKey).HasColumnName("client_school_key").IsRequired();
 
-            //Relationship One-To-Many
-            builder.HasOne(x => x.Role)
-                   .WithMany(x => x.FeaturesRole)
-                   .HasForeignKey(sp => sp.RoleId).HasConstraintName("role_id");
+            //Entity columns
+            builder.Property(x => x.Token).HasColumnName("token").IsRequired();
+            builder.Property(x => x.TimedAt).HasColumnName("timed_at").IsRequired();
+            builder.Property(x => x.ExpiringAt).HasColumnName("expiring_at").IsRequired();
 
-            builder.HasOne(sp => sp.Feature)
-                   .WithMany(p => p.FeaturesRole)
-                   .HasForeignKey(sp => sp.FeatureId).HasConstraintName("feature_id");
-
-            builder.Property(o => o.FeatureId)
-                   .HasColumnName("feature_id");
-
-            builder.Property(o => o.RoleId)
-                  .HasColumnName("role_id");
-
-            builder.ToTable("Feature_Role");
+            builder.ToTable("Access_Token");
 
             //Global filter
             builder.HasQueryFilter(x => x.IsActive);

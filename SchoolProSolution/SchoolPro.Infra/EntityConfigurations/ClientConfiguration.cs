@@ -8,7 +8,7 @@
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).HasColumnName("id").HasValueGenerator<GuidValueGenerator>();
             builder.Property(x => x.IsActive).HasColumnName("is_active").IsRequired().HasDefaultValue(true);
-            builder.Property(x => x.CreatedAt).HasColumnName("created_at");
+            builder.Property(x => x.CreatedAt).HasColumnName("created_at").IsRequired();
             builder.Property(x => x.UpdatedAt).HasColumnName("updated_at");
             builder.Property(x => x.DeletedAt).HasColumnName("deleted_at");
 
@@ -19,7 +19,7 @@
             builder.Property(x => x.ResponsableEmail).HasColumnName("responsable_email").HasMaxLength(50).IsRequired(false);
             builder.Property(x => x.ResponsableCellPhone1).HasColumnName("responsable_cellphone_1").HasMaxLength(11).IsRequired(false);
             builder.Property(x => x.ResponsableCellPhone2).HasColumnName("responsable_cellphone_2").HasMaxLength(11).IsRequired(false);
-            builder.Property(x => x.ClientKey).HasColumnName("client_key").HasValueGenerator<GuidValueGenerator>();
+            builder.Property(x => x.ClientKey).HasColumnName("client_key").IsRequired().HasValueGenerator<GuidValueGenerator>();
 
             builder.ToTable("Client");
 

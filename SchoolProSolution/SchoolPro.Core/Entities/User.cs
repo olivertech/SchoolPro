@@ -14,6 +14,9 @@
         //Navigation Properties
         public Guid ClientId { get; set; }
         public Client? Client { get; set; }
+        public Guid? AccessTokenId { get; set; }
+        public AccessToken? AccessToken { get; set; }
+
         public IList<UserRole>? UserRoles { get; set; }
     }
 }

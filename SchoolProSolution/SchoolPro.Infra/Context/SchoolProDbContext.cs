@@ -1,8 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SchoolPro.Core.Entities;
-using System.Reflection;
-
-namespace SchoolPro.Infra.Context
+﻿namespace SchoolPro.Infra.Context
 {
     public class SchoolProDbContext : DbContext
     {
@@ -11,6 +7,7 @@ namespace SchoolPro.Infra.Context
         {
         }
 
+        public DbSet<AccessToken> AccessTokens { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Document> Documents { get; set; }

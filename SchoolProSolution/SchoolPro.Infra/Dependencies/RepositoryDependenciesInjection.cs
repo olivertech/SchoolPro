@@ -17,6 +17,7 @@ namespace SchoolPro.Infra.Dependencies
                                                     configuration.GetConnectionString("DefaultConnectionString"))
                                                 );
             //Repositories injections
+            services.AddScoped<IAccessTokenRepository, AccessTokenRepository>();
             services.AddScoped<IClientRepository, ClientRepository>();
             services.AddScoped<IContactRepository, ContactRepository>();
             services.AddScoped<IDocumentRepository, DocumentRepository>();

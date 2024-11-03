@@ -2,6 +2,7 @@
 {
     public interface IUnitOfWork
     {
+        IAccessTokenRepository AccessTokenRepository { get; }
         IClientRepository ClientRepository { get; }
         IContactRepository ContactRepository { get; }
         IDocumentRepository DocumentRepository { get; }

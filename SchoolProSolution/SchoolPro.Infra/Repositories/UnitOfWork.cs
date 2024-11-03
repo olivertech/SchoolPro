@@ -4,6 +4,7 @@
     {
         private readonly SchoolProDbContext? _context;
 
+        private IAccessTokenRepository? _accessTokenRepository;
         private IClientRepository? _clientRepository;
         private IContactRepository? _contactRepository;
         private IDocumentRepository? _documentRepository;
@@ -32,6 +33,8 @@
         {
             _context = context;
         }
+
+        public IAccessTokenRepository AccessTokenRepository => _accessTokenRepository ??= new AccessTokenRepository(_context!);
 
         public IClientRepository ClientRepository => _clientRepository ??= new ClientRepository(_context!);
 
@@ -78,7 +81,6 @@
         public IUserRoleRepository UserRoleRepository => _userRoleRepository ?? new UserRoleRepository(_context!);
 
         public IUserRepository UserRepository => _userRepository ?? new UserRepository(_context!);
-
 
         public async Task CommitAsync()
         {
