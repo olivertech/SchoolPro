@@ -12,9 +12,17 @@
         public string? Action { get; set; }
         public string? Json { get; set; }
         public TimeOnly? TimedAt { get; set; }
+        public EnumInformationLevel Level { get; set; }
 
         //Navigation Property
         public Guid UserId { get; set; }
         public User? User { get; set; }
+    }
+
+    public enum EnumInformationLevel : int
+    {
+        None = 0,
+        Warning = 1,
+        Error = 2,
     }
 }

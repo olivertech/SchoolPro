@@ -7,32 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Properties\SessionProperties.cs" />
     <Compile Remove="Requests\UserRoleRequest.cs" />
-    <Compile Remove="Responses\ClientResponse.cs" />
-    <Compile Remove="Responses\ContactResponse.cs" />
-    <Compile Remove="Responses\DocumentResponse.cs" />
-    <Compile Remove="Responses\DocumentTypeResponse.cs" />
-    <Compile Remove="Responses\FeatureResponse.cs" />
-    <Compile Remove="Responses\FeatureRoleResponse.cs" />
-    <Compile Remove="Responses\FeeTypeResponse.cs" />
-    <Compile Remove="Responses\LoginResponse.cs" />
-    <Compile Remove="Responses\ParentResponse.cs" />
-    <Compile Remove="Responses\RoleResponse.cs" />
-    <Compile Remove="Responses\RoomResponse.cs" />
-    <Compile Remove="Responses\SchoolCalendarResponse.cs" />
-    <Compile Remove="Responses\SchoolEnrollmentResponse.cs" />
-    <Compile Remove="Responses\SchoolFeeResponse.cs" />
-    <Compile Remove="Responses\SchoolResponse.cs" />
-    <Compile Remove="Responses\SchoolSubjectResponse.cs" />
-    <Compile Remove="Responses\SchoolYearResponse.cs" />
-    <Compile Remove="Responses\StudentClassResponse.cs" />
-    <Compile Remove="Responses\StudentGradeResponse.cs" />
-    <Compile Remove="Responses\StudentParentResponse.cs" />
-    <Compile Remove="Responses\StudentResponse.cs" />
-    <Compile Remove="Responses\TeacherResponse.cs" />
-    <Compile Remove="Responses\TeacherSchoolSubjectResponse.cs" />
-    <Compile Remove="Responses\UserResponse.cs" />
-    <Compile Remove="Responses\UserRoleResponse.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,6 +17,8 @@
 
   <ItemGroup>
     <Folder Include="Configurations\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Properties\" />
   </ItemGroup>
 
   <ItemGroup>

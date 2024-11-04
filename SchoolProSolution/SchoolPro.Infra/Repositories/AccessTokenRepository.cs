@@ -1,4 +1,6 @@
-﻿namespace SchoolPro.Infra.Repositories
+﻿using System.Net.Http;
+
+namespace SchoolPro.Infra.Repositories
 {
     public class AccessTokenRepository : RepositoryAuthorizedBase<AccessToken>, IAccessTokenRepository
     {
@@ -14,6 +16,21 @@
             return await _context!.AccessTokens
                 .Where(x => x.Id == user.AccessTokenId)
                 .FirstOrDefaultAsync();
+        }
+
+        public async Task DeleteLoggedUserAccessToken(Guid userId)
+        {
+            var user = await _context!.Users.FirstOrDefaultAsync(x => x.Id == userId);
+
+            if(user != null)
+            {
+                var accessToken = await _context!.AccessTokens.Where(x => x.Id == user.AccessTokenId).FirstOrDefaultAsync();
+
+                if(accessToken != null)
+                {
+                    _context.AccessTokens.Remove(accessToken);
+                }
+            }
         }
     }
 }

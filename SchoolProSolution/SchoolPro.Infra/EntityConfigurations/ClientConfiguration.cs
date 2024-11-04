@@ -19,7 +19,7 @@
             builder.Property(x => x.ResponsableEmail).HasColumnName("responsable_email").HasMaxLength(50).IsRequired(false);
             builder.Property(x => x.ResponsableCellPhone1).HasColumnName("responsable_cellphone_1").HasMaxLength(15).IsRequired(false);
             builder.Property(x => x.ResponsableCellPhone2).HasColumnName("responsable_cellphone_2").HasMaxLength(15).IsRequired(false);
-            builder.Property(x => x.ClientKey).HasColumnName("client_key").IsRequired().HasValueGenerator<GuidValueGenerator>();
+            builder.Property(x => x.ClientSecretKey).HasColumnName("client_secret_key").IsRequired().HasMaxLength(32);
 
             builder.ToTable("Client");
 
@@ -37,7 +37,7 @@
                     ResponsableEmail = "joao.silva@123deoliveira4.com",
                     ResponsableCellPhone1 = "(11) 11111-1111",
                     ResponsableCellPhone2 = "(22) 22222-2222",
-                    ClientKey = Guid.Parse("45533ff6-3ba5-11ef-9476-0242ac130002"),
+                    ClientSecretKey = "iaxqRaCHDNR5KZrriHVq59U96PedeKTm",
                     CreatedAt = DateOnly.FromDateTime(DateTime.Now)
                 },
             });

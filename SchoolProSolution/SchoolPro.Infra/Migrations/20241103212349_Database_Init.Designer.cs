@@ -12,8 +12,8 @@ using SchoolPro.Infra.Context;
 namespace SchoolPro.Infra.Migrations
 {
     [DbContext(typeof(SchoolProDbContext))]
-    [Migration("20241103173228_Update_Fields9")]
-    partial class Update_Fields9
+    [Migration("20241103212349_Database_Init")]
+    partial class Database_Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -307,6 +307,14 @@ namespace SchoolPro.Infra.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("parent_id");
 
+                    b.Property<Guid?>("SchoolEnrollmentId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("school_enrollment_id");
+
+                    b.Property<Guid?>("SchoolFeeId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("school_fee_id");
+
                     b.Property<Guid?>("SchoolId")
                         .HasColumnType("uuid")
                         .HasColumnName("school_id");
@@ -334,6 +342,10 @@ namespace SchoolPro.Infra.Migrations
                     b.HasIndex("DocumentTypeId");
 
                     b.HasIndex("ParentId");
+
+                    b.HasIndex("SchoolEnrollmentId");
+
+                    b.HasIndex("SchoolFeeId");
 
                     b.HasIndex("SchoolId");
 
@@ -512,6 +524,52 @@ namespace SchoolPro.Infra.Migrations
                     b.ToTable("Feature_Role", (string)null);
                 });
 
+            modelBuilder.Entity("SchoolPro.Core.Entities.FeeType", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("ClientSchoolKey")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("client_school_key");
+
+                    b.Property<DateOnly>("CreatedAt")
+                        .HasColumnType("date")
+                        .HasColumnName("created_at");
+
+                    b.Property<DateOnly?>("DeletedAt")
+                        .HasColumnType("date")
+                        .HasColumnName("deleted_at");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)")
+                        .HasColumnName("description");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("name");
+
+                    b.Property<DateOnly?>("UpdatedAt")
+                        .HasColumnType("date")
+                        .HasColumnName("updated_at");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Fee_Type", (string)null);
+                });
+
             modelBuilder.Entity("SchoolPro.Core.Entities.Parent", b =>
                 {
                     b.Property<Guid>("Id")
@@ -631,6 +689,63 @@ namespace SchoolPro.Infra.Migrations
                         });
                 });
 
+            modelBuilder.Entity("SchoolPro.Core.Entities.Room", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<int>("Capacity")
+                        .HasColumnType("integer")
+                        .HasColumnName("capacity");
+
+                    b.Property<string>("ClientSchoolKey")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("client_school_key");
+
+                    b.Property<DateOnly>("CreatedAt")
+                        .HasColumnType("date")
+                        .HasColumnName("created_at");
+
+                    b.Property<DateOnly?>("DeletedAt")
+                        .HasColumnType("date")
+                        .HasColumnName("deleted_at");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)")
+                        .HasColumnName("description");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("name");
+
+                    b.Property<Guid?>("SchoolId")
+                        .IsRequired()
+                        .HasColumnType("uuid")
+                        .HasColumnName("school_id");
+
+                    b.Property<DateOnly?>("UpdatedAt")
+                        .HasColumnType("date")
+                        .HasColumnName("updated_at");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SchoolId");
+
+                    b.ToTable("Room", (string)null);
+                });
+
             modelBuilder.Entity("SchoolPro.Core.Entities.School", b =>
                 {
                     b.Property<Guid>("Id")
@@ -723,6 +838,296 @@ namespace SchoolPro.Infra.Migrations
                         });
                 });
 
+            modelBuilder.Entity("SchoolPro.Core.Entities.SchoolCalendar", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("ClientSchoolKey")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("client_school_key");
+
+                    b.Property<DateOnly>("CreatedAt")
+                        .HasColumnType("date")
+                        .HasColumnName("created_at");
+
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("date")
+                        .HasColumnName("date");
+
+                    b.Property<DateOnly?>("DeletedAt")
+                        .HasColumnType("date")
+                        .HasColumnName("deleted_at");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)")
+                        .HasColumnName("description");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
+
+                    b.Property<Guid?>("RoomId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("room_id");
+
+                    b.Property<Guid?>("SchoolSubjectId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("school_subject_id");
+
+                    b.Property<Guid?>("SchoolYearId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("school_year_id");
+
+                    b.Property<TimeOnly>("TimeFrom")
+                        .HasColumnType("time without time zone")
+                        .HasColumnName("time_from");
+
+                    b.Property<TimeOnly>("TimeTo")
+                        .HasColumnType("time without time zone")
+                        .HasColumnName("time_to");
+
+                    b.Property<DateOnly?>("UpdatedAt")
+                        .HasColumnType("date")
+                        .HasColumnName("updated_at");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoomId");
+
+                    b.HasIndex("SchoolSubjectId");
+
+                    b.HasIndex("SchoolYearId");
+
+                    b.ToTable("School_Calendar", (string)null);
+                });
+
+            modelBuilder.Entity("SchoolPro.Core.Entities.SchoolEnrollment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<bool>("Approved")
+                        .HasColumnType("boolean")
+                        .HasColumnName("approved");
+
+                    b.Property<string>("ClientSchoolKey")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("client_school_key");
+
+                    b.Property<DateOnly>("CreatedAt")
+                        .HasColumnType("date")
+                        .HasColumnName("created_at");
+
+                    b.Property<DateOnly?>("DeletedAt")
+                        .HasColumnType("date")
+                        .HasColumnName("deleted_at");
+
+                    b.Property<string>("Enrollment")
+                        .IsRequired()
+                        .HasMaxLength(25)
+                        .HasColumnType("character varying(25)")
+                        .HasColumnName("enrollment");
+
+                    b.Property<string>("FinalGrade")
+                        .HasMaxLength(10)
+                        .HasColumnType("character varying(10)")
+                        .HasColumnName("final_grade");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
+
+                    b.Property<Guid?>("SchoolYearId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("school_year_id");
+
+                    b.Property<Guid?>("StudentId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("student_id");
+
+                    b.Property<DateOnly?>("UpdatedAt")
+                        .HasColumnType("date")
+                        .HasColumnName("updated_at");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SchoolYearId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("School_Enrollment", (string)null);
+                });
+
+            modelBuilder.Entity("SchoolPro.Core.Entities.SchoolFee", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("ClientSchoolKey")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("client_school_key");
+
+                    b.Property<DateOnly>("CreatedAt")
+                        .HasColumnType("date")
+                        .HasColumnName("created_at");
+
+                    b.Property<DateOnly?>("DeletedAt")
+                        .HasColumnType("date")
+                        .HasColumnName("deleted_at");
+
+                    b.Property<DateOnly>("DueDate")
+                        .HasColumnType("date")
+                        .HasColumnName("due_date");
+
+                    b.Property<Guid?>("FeeTypeId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("fee_type_id");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
+
+                    b.Property<DateOnly>("PaymentDate")
+                        .HasColumnType("date")
+                        .HasColumnName("payment_date");
+
+                    b.Property<Guid?>("SchoolEnrollmentId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("StatusFee")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("status_fee");
+
+                    b.Property<DateOnly?>("UpdatedAt")
+                        .HasColumnType("date")
+                        .HasColumnName("updated_at");
+
+                    b.Property<decimal>("Value")
+                        .HasColumnType("numeric")
+                        .HasColumnName("value");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FeeTypeId");
+
+                    b.ToTable("School_Fee", (string)null);
+                });
+
+            modelBuilder.Entity("SchoolPro.Core.Entities.SchoolSubject", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("ClientSchoolKey")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("client_school_key");
+
+                    b.Property<DateOnly>("CreatedAt")
+                        .HasColumnType("date")
+                        .HasColumnName("created_at");
+
+                    b.Property<DateOnly?>("DeletedAt")
+                        .HasColumnType("date")
+                        .HasColumnName("deleted_at");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)")
+                        .HasColumnName("description");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("title");
+
+                    b.Property<DateOnly?>("UpdatedAt")
+                        .HasColumnType("date")
+                        .HasColumnName("updated_at");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("School_Subject", (string)null);
+                });
+
+            modelBuilder.Entity("SchoolPro.Core.Entities.SchoolYear", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<decimal>("Billing")
+                        .HasColumnType("numeric")
+                        .HasColumnName("billing");
+
+                    b.Property<decimal>("Budget")
+                        .HasColumnType("numeric")
+                        .HasColumnName("budget");
+
+                    b.Property<string>("ClientSchoolKey")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("client_school_key");
+
+                    b.Property<DateOnly>("CreatedAt")
+                        .HasColumnType("date")
+                        .HasColumnName("created_at");
+
+                    b.Property<DateOnly?>("DeletedAt")
+                        .HasColumnType("date")
+                        .HasColumnName("deleted_at");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text")
+                        .HasColumnName("description");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
+
+                    b.Property<DateOnly?>("UpdatedAt")
+                        .HasColumnType("date")
+                        .HasColumnName("updated_at");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("integer")
+                        .HasColumnName("year");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("School_Year", (string)null);
+                });
+
             modelBuilder.Entity("SchoolPro.Core.Entities.Student", b =>
                 {
                     b.Property<Guid>("Id")
@@ -773,6 +1178,10 @@ namespace SchoolPro.Infra.Migrations
                         .HasColumnType("character varying(50)")
                         .HasColumnName("name");
 
+                    b.Property<Guid?>("StudentClassId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("student_class_id");
+
                     b.Property<DateOnly?>("UpdatedAt")
                         .HasColumnType("date")
                         .HasColumnName("updated_at");
@@ -781,7 +1190,148 @@ namespace SchoolPro.Infra.Migrations
 
                     b.HasIndex("ContactId");
 
+                    b.HasIndex("StudentClassId");
+
                     b.ToTable("Student", (string)null);
+                });
+
+            modelBuilder.Entity("SchoolPro.Core.Entities.StudentClass", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<int>("Capacity")
+                        .HasColumnType("integer")
+                        .HasColumnName("capacity");
+
+                    b.Property<string>("ClientSchoolKey")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("client_school_key");
+
+                    b.Property<DateOnly>("CreatedAt")
+                        .HasColumnType("date")
+                        .HasColumnName("created_at");
+
+                    b.Property<DateOnly?>("DeletedAt")
+                        .HasColumnType("date")
+                        .HasColumnName("deleted_at");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)")
+                        .HasColumnName("description");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("name");
+
+                    b.Property<Guid?>("RoomId")
+                        .IsRequired()
+                        .HasColumnType("uuid")
+                        .HasColumnName("room_id");
+
+                    b.Property<DateOnly?>("UpdatedAt")
+                        .HasColumnType("date")
+                        .HasColumnName("updated_at");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoomId");
+
+                    b.ToTable("Student_Class", (string)null);
+                });
+
+            modelBuilder.Entity("SchoolPro.Core.Entities.StudentGrade", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("ClientSchoolKey")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("client_school_key");
+
+                    b.Property<DateOnly>("CreatedAt")
+                        .HasColumnType("date")
+                        .HasColumnName("created_at");
+
+                    b.Property<DateOnly>("DateGrade")
+                        .HasColumnType("date")
+                        .HasColumnName("date_grade");
+
+                    b.Property<DateOnly?>("DeletedAt")
+                        .HasColumnType("date")
+                        .HasColumnName("deleted_at");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("description");
+
+                    b.Property<decimal>("Grade")
+                        .HasColumnType("numeric")
+                        .HasColumnName("grade");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
+
+                    b.Property<decimal>("MinimalGrade")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("numeric")
+                        .HasDefaultValue(5m)
+                        .HasColumnName("minimal_grade");
+
+                    b.Property<Guid?>("SchoolEnrollmentId")
+                        .IsRequired()
+                        .HasColumnType("uuid")
+                        .HasColumnName("school_enrollment_id");
+
+                    b.Property<Guid?>("SchoolSubjectId")
+                        .IsRequired()
+                        .HasColumnType("uuid")
+                        .HasColumnName("school_subject_id");
+
+                    b.Property<Guid?>("StudentClassId")
+                        .IsRequired()
+                        .HasColumnType("uuid")
+                        .HasColumnName("student_class_id");
+
+                    b.Property<Guid?>("StudentId")
+                        .IsRequired()
+                        .HasColumnType("uuid")
+                        .HasColumnName("student_id");
+
+                    b.Property<DateOnly?>("UpdatedAt")
+                        .HasColumnType("date")
+                        .HasColumnName("updated_at");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SchoolEnrollmentId");
+
+                    b.HasIndex("SchoolSubjectId");
+
+                    b.HasIndex("StudentClassId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("Student_Grade", (string)null);
                 });
 
             modelBuilder.Entity("SchoolPro.Core.Entities.StudentParent", b =>
@@ -829,6 +1379,60 @@ namespace SchoolPro.Infra.Migrations
                     b.HasIndex("StudentId");
 
                     b.ToTable("Student_Parent", (string)null);
+                });
+
+            modelBuilder.Entity("SchoolPro.Core.Entities.SystemLog", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Action")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("action");
+
+                    b.Property<DateOnly>("CreatedAt")
+                        .HasColumnType("date")
+                        .HasColumnName("created_at");
+
+                    b.Property<DateOnly?>("DeletedAt")
+                        .HasColumnType("date")
+                        .HasColumnName("deleted_at");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
+
+                    b.Property<string>("Json")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("json");
+
+                    b.Property<int>("Level")
+                        .HasColumnType("integer")
+                        .HasColumnName("level");
+
+                    b.Property<TimeOnly?>("TimedAt")
+                        .IsRequired()
+                        .HasColumnType("time without time zone")
+                        .HasColumnName("timed_at");
+
+                    b.Property<DateOnly?>("UpdatedAt")
+                        .HasColumnType("date")
+                        .HasColumnName("updated_at");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("System_Log", (string)null);
                 });
 
             modelBuilder.Entity("SchoolPro.Core.Entities.Teacher", b =>
@@ -892,6 +1496,53 @@ namespace SchoolPro.Infra.Migrations
                     b.ToTable("Teacher", (string)null);
                 });
 
+            modelBuilder.Entity("SchoolPro.Core.Entities.TeacherSchoolSubject", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("ClientSchoolKey")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("client_school_key");
+
+                    b.Property<DateOnly>("CreatedAt")
+                        .HasColumnType("date")
+                        .HasColumnName("created_at");
+
+                    b.Property<DateOnly?>("DeletedAt")
+                        .HasColumnType("date")
+                        .HasColumnName("deleted_at");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
+
+                    b.Property<Guid?>("SchoolSubjectId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("school_subject_id");
+
+                    b.Property<Guid?>("TeacherId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("teacher_id");
+
+                    b.Property<DateOnly?>("UpdatedAt")
+                        .HasColumnType("date")
+                        .HasColumnName("updated_at");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SchoolSubjectId");
+
+                    b.HasIndex("TeacherId");
+
+                    b.ToTable("Teacher_School_Subject", (string)null);
+                });
+
             modelBuilder.Entity("SchoolPro.Core.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
@@ -902,10 +1553,6 @@ namespace SchoolPro.Infra.Migrations
                     b.Property<Guid?>("AccessTokenId")
                         .HasColumnType("uuid")
                         .HasColumnName("access_token_id");
-
-                    b.Property<Guid>("ClientId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("client_id");
 
                     b.Property<DateOnly>("CreatedAt")
                         .HasColumnType("date")
@@ -949,6 +1596,10 @@ namespace SchoolPro.Infra.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("role_id");
 
+                    b.Property<Guid>("SchoolId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("school_id");
+
                     b.Property<DateOnly?>("UpdatedAt")
                         .HasColumnType("date")
                         .HasColumnName("updated_at");
@@ -957,9 +1608,9 @@ namespace SchoolPro.Infra.Migrations
 
                     b.HasIndex("AccessTokenId");
 
-                    b.HasIndex("ClientId");
-
                     b.HasIndex("RoleId");
+
+                    b.HasIndex("SchoolId");
 
                     b.ToTable("User", (string)null);
 
@@ -967,13 +1618,13 @@ namespace SchoolPro.Infra.Migrations
                         new
                         {
                             Id = new Guid("9a150059-614b-47c3-b56f-59deededd8d6"),
-                            ClientId = new Guid("9cf0bfd2-3d70-11ef-a3ab-0242ac1c0002"),
                             CreatedAt = new DateOnly(2024, 11, 3),
                             Email = "marcelo@schoolpro.com",
                             IsActive = true,
                             Name = "Marcelo de Oliveira",
                             Password = "123",
-                            RoleId = new Guid("45533ff6-3ba5-11ef-9476-0242ac130002")
+                            RoleId = new Guid("45533ff6-3ba5-11ef-9476-0242ac130002"),
+                            SchoolId = new Guid("9cf0bfd2-3d70-11ef-a3ab-0242ac1c0002")
                         });
                 });
 
@@ -989,6 +1640,14 @@ namespace SchoolPro.Infra.Migrations
                         .WithMany("Documents")
                         .HasForeignKey("ParentId")
                         .HasConstraintName("parent_Id");
+
+                    b.HasOne("SchoolPro.Core.Entities.SchoolEnrollment", "SchoolEnrollment")
+                        .WithMany()
+                        .HasForeignKey("SchoolEnrollmentId");
+
+                    b.HasOne("SchoolPro.Core.Entities.SchoolFee", "SchoolFee")
+                        .WithMany()
+                        .HasForeignKey("SchoolFeeId");
 
                     b.HasOne("SchoolPro.Core.Entities.School", "School")
                         .WithMany("Documents")
@@ -1010,6 +1669,10 @@ namespace SchoolPro.Infra.Migrations
                     b.Navigation("Parent");
 
                     b.Navigation("School");
+
+                    b.Navigation("SchoolEnrollment");
+
+                    b.Navigation("SchoolFee");
 
                     b.Navigation("Student");
 
@@ -1042,6 +1705,17 @@ namespace SchoolPro.Infra.Migrations
                     b.Navigation("Contact");
                 });
 
+            modelBuilder.Entity("SchoolPro.Core.Entities.Room", b =>
+                {
+                    b.HasOne("SchoolPro.Core.Entities.School", "School")
+                        .WithMany()
+                        .HasForeignKey("SchoolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("School");
+                });
+
             modelBuilder.Entity("SchoolPro.Core.Entities.School", b =>
                 {
                     b.HasOne("SchoolPro.Core.Entities.Client", "Client")
@@ -1059,13 +1733,111 @@ namespace SchoolPro.Infra.Migrations
                     b.Navigation("Contact");
                 });
 
+            modelBuilder.Entity("SchoolPro.Core.Entities.SchoolCalendar", b =>
+                {
+                    b.HasOne("SchoolPro.Core.Entities.Room", "Room")
+                        .WithMany()
+                        .HasForeignKey("RoomId");
+
+                    b.HasOne("SchoolPro.Core.Entities.SchoolSubject", "SchoolSubject")
+                        .WithMany()
+                        .HasForeignKey("SchoolSubjectId");
+
+                    b.HasOne("SchoolPro.Core.Entities.SchoolYear", "SchoolYear")
+                        .WithMany()
+                        .HasForeignKey("SchoolYearId");
+
+                    b.Navigation("Room");
+
+                    b.Navigation("SchoolSubject");
+
+                    b.Navigation("SchoolYear");
+                });
+
+            modelBuilder.Entity("SchoolPro.Core.Entities.SchoolEnrollment", b =>
+                {
+                    b.HasOne("SchoolPro.Core.Entities.SchoolYear", "SchoolYear")
+                        .WithMany()
+                        .HasForeignKey("SchoolYearId");
+
+                    b.HasOne("SchoolPro.Core.Entities.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentId");
+
+                    b.Navigation("SchoolYear");
+
+                    b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("SchoolPro.Core.Entities.SchoolFee", b =>
+                {
+                    b.HasOne("SchoolPro.Core.Entities.FeeType", "FeeType")
+                        .WithMany()
+                        .HasForeignKey("FeeTypeId");
+
+                    b.Navigation("FeeType");
+                });
+
             modelBuilder.Entity("SchoolPro.Core.Entities.Student", b =>
                 {
                     b.HasOne("SchoolPro.Core.Entities.Contact", "Contact")
                         .WithMany()
                         .HasForeignKey("ContactId");
 
+                    b.HasOne("SchoolPro.Core.Entities.StudentClass", "StudentClass")
+                        .WithMany("Students")
+                        .HasForeignKey("StudentClassId")
+                        .HasConstraintName("student_class_Id");
+
                     b.Navigation("Contact");
+
+                    b.Navigation("StudentClass");
+                });
+
+            modelBuilder.Entity("SchoolPro.Core.Entities.StudentClass", b =>
+                {
+                    b.HasOne("SchoolPro.Core.Entities.Room", "Room")
+                        .WithMany()
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Room");
+                });
+
+            modelBuilder.Entity("SchoolPro.Core.Entities.StudentGrade", b =>
+                {
+                    b.HasOne("SchoolPro.Core.Entities.SchoolEnrollment", "SchoolEnrollment")
+                        .WithMany()
+                        .HasForeignKey("SchoolEnrollmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SchoolPro.Core.Entities.SchoolSubject", "SchoolSubject")
+                        .WithMany()
+                        .HasForeignKey("SchoolSubjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SchoolPro.Core.Entities.StudentClass", "StudentClass")
+                        .WithMany()
+                        .HasForeignKey("StudentClassId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SchoolPro.Core.Entities.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SchoolEnrollment");
+
+                    b.Navigation("SchoolSubject");
+
+                    b.Navigation("Student");
+
+                    b.Navigation("StudentClass");
                 });
 
             modelBuilder.Entity("SchoolPro.Core.Entities.StudentParent", b =>
@@ -1085,6 +1857,17 @@ namespace SchoolPro.Infra.Migrations
                     b.Navigation("Student");
                 });
 
+            modelBuilder.Entity("SchoolPro.Core.Entities.SystemLog", b =>
+                {
+                    b.HasOne("SchoolPro.Core.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("SchoolPro.Core.Entities.Teacher", b =>
                 {
                     b.HasOne("SchoolPro.Core.Entities.Contact", "Contact")
@@ -1094,17 +1877,28 @@ namespace SchoolPro.Infra.Migrations
                     b.Navigation("Contact");
                 });
 
+            modelBuilder.Entity("SchoolPro.Core.Entities.TeacherSchoolSubject", b =>
+                {
+                    b.HasOne("SchoolPro.Core.Entities.SchoolSubject", "SchoolSubject")
+                        .WithMany("TeacherSchoolSubjects")
+                        .HasForeignKey("SchoolSubjectId")
+                        .HasConstraintName("school_subject_Id");
+
+                    b.HasOne("SchoolPro.Core.Entities.Teacher", "Teacher")
+                        .WithMany("TeacherSchoolSubjects")
+                        .HasForeignKey("TeacherId")
+                        .HasConstraintName("teacher_Id");
+
+                    b.Navigation("SchoolSubject");
+
+                    b.Navigation("Teacher");
+                });
+
             modelBuilder.Entity("SchoolPro.Core.Entities.User", b =>
                 {
                     b.HasOne("SchoolPro.Core.Entities.AccessToken", "AccessToken")
                         .WithMany()
                         .HasForeignKey("AccessTokenId");
-
-                    b.HasOne("SchoolPro.Core.Entities.Client", "Client")
-                        .WithMany()
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
 
                     b.HasOne("SchoolPro.Core.Entities.Role", "Role")
                         .WithMany()
@@ -1112,11 +1906,17 @@ namespace SchoolPro.Infra.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("SchoolPro.Core.Entities.School", "School")
+                        .WithMany()
+                        .HasForeignKey("SchoolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("AccessToken");
 
-                    b.Navigation("Client");
-
                     b.Navigation("Role");
+
+                    b.Navigation("School");
                 });
 
             modelBuilder.Entity("SchoolPro.Core.Entities.Client", b =>
@@ -1146,6 +1946,11 @@ namespace SchoolPro.Infra.Migrations
                     b.Navigation("Documents");
                 });
 
+            modelBuilder.Entity("SchoolPro.Core.Entities.SchoolSubject", b =>
+                {
+                    b.Navigation("TeacherSchoolSubjects");
+                });
+
             modelBuilder.Entity("SchoolPro.Core.Entities.Student", b =>
                 {
                     b.Navigation("Documents");
@@ -1153,9 +1958,16 @@ namespace SchoolPro.Infra.Migrations
                     b.Navigation("StudentParents");
                 });
 
+            modelBuilder.Entity("SchoolPro.Core.Entities.StudentClass", b =>
+                {
+                    b.Navigation("Students");
+                });
+
             modelBuilder.Entity("SchoolPro.Core.Entities.Teacher", b =>
                 {
                     b.Navigation("Documents");
+
+                    b.Navigation("TeacherSchoolSubjects");
                 });
 #pragma warning restore 612, 618
         }

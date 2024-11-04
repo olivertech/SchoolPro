@@ -103,12 +103,12 @@ namespace SchoolPro.Api
                 app.UseSwagger();
                 app.UseSwaggerUI();
                 app.UseDeveloperExceptionPage();
+                app.UseSession();
             }
 
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 

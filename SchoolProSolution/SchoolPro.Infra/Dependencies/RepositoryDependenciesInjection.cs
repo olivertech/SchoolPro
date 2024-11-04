@@ -1,4 +1,5 @@
-﻿using SchoolPro.Infra.Repositories;
+﻿using SchoolPro.Infra.Helpers;
+using SchoolPro.Infra.Repositories;
 
 namespace SchoolPro.Infra.Dependencies
 {
@@ -44,7 +45,8 @@ namespace SchoolPro.Infra.Dependencies
             services.AddScoped<IUserRepository, UserRepository>();
 
             //Others
-            //services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<ISystemLogHelper, SystemLogHelper>();
 
             return services;
         }

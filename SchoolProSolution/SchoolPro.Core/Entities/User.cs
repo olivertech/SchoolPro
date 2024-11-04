@@ -12,8 +12,8 @@
         public string? PicturePath { get; set; }
 
         //Navigation Properties
-        public Guid ClientId { get; set; }
-        public Client? Client { get; set; }
+        public Guid SchoolId { get; set; }
+        public School? School { get; set; }
         public Guid? AccessTokenId { get; set; }
         public AccessToken? AccessToken { get; set; }
         public Guid? RoleId { get; set; }

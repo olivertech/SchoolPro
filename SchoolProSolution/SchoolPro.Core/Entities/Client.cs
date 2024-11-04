@@ -19,7 +19,7 @@
         /// <summary>
         /// Chave única que identifica um cliente
         /// </summary>
-        public Guid ClientKey { get; set; } = Guid.NewGuid();
+        public string ClientSecretKey { get; set; } = null!;
 
         //Navigation Properties
         public IList<School>? Schools { get; set; }

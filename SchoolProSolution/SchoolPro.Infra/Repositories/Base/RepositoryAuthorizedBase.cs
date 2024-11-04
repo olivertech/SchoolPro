@@ -139,7 +139,7 @@
                 if (entity is null)
                     throw new ArgumentNullException(nameof(entity));
 
-                var item = await _dbSet!.FindAsync(entity);
+                var item = await _dbSet!.FindAsync(entity.Id);
 
                 if (item is not null && item.ClientSchoolKey == clientSchoolKey)
                 {

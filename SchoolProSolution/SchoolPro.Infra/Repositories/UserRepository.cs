@@ -12,9 +12,9 @@
                 return null;
 
             return await _context!.Users!
-                //.Include(ur => ur.Role!)
-                .Where(u => u.Email == email && u.Password == password)
-                .FirstOrDefaultAsync();
+                        .Include(ur => ur.Role!)
+                        .Where(u => u.Email == email && u.Password == password)
+                        .FirstOrDefaultAsync();
         }
     }
 }

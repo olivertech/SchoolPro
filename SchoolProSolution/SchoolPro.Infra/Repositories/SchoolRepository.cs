@@ -5,5 +5,7 @@
         public SchoolRepository([NotNull] SchoolProDbContext context) : base(context)
         {
         }
+
+        //public School GetUserSchool(Guid userId)
     }
 }

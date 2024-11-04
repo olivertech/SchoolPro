@@ -15,7 +15,7 @@
         /// <summary>
         /// Chave única que identifica uma escola
         /// </summary>
-        public Guid SchoolKey { get; set; } = Guid.NewGuid();
+        public string SchoolSecretKey { get; set; } = null!;
 
         //Navigation Property
         public Guid? ContactId { get; set; }

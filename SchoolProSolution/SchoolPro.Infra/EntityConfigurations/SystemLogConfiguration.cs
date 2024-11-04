@@ -14,9 +14,10 @@
 
             //Entity columns
             builder.Property(x => x.Action).HasColumnName("action").IsRequired();
-            builder.Property(x => x.Json).HasColumnName("json").HasColumnType("jsonb").IsRequired(false);
+            builder.Property(x => x.Level).HasColumnName("level").IsRequired();
             builder.Property(x => x.UserId).HasColumnName("user_id").IsRequired();
             builder.Property(x => x.TimedAt).HasColumnName("timed_at").IsRequired();
+            builder.Property(x => x.Json).HasColumnName("json").HasColumnType("jsonb").IsRequired(false);
 
             builder.ToTable("System_Log");
 

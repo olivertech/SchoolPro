@@ -79,9 +79,11 @@ namespace SchoolPro.Infra.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("id");
 
-                    b.Property<Guid>("ClientKey")
-                        .HasColumnType("uuid")
-                        .HasColumnName("client_key");
+                    b.Property<string>("ClientSecretKey")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("character varying(32)")
+                        .HasColumnName("client_secret_key");
 
                     b.Property<DateOnly>("CreatedAt")
                         .HasColumnType("date")
@@ -141,7 +143,7 @@ namespace SchoolPro.Infra.Migrations
                         new
                         {
                             Id = new Guid("9cf0bfd2-3d70-11ef-a3ab-0242ac1c0002"),
-                            ClientKey = new Guid("45533ff6-3ba5-11ef-9476-0242ac130002"),
+                            ClientSecretKey = "iaxqRaCHDNR5KZrriHVq59U96PedeKTm",
                             CreatedAt = new DateOnly(2024, 11, 3),
                             Description = "Rede de Ensino 123 de Oliveira 4",
                             IsActive = true,
@@ -799,9 +801,11 @@ namespace SchoolPro.Infra.Migrations
                         .HasColumnType("character varying(50)")
                         .HasColumnName("name");
 
-                    b.Property<Guid>("SchoolKey")
-                        .HasColumnType("uuid")
-                        .HasColumnName("school_key");
+                    b.Property<string>("SchoolSecretKey")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("character varying(32)")
+                        .HasColumnName("school_secret_key");
 
                     b.Property<string>("StateRegistration")
                         .HasMaxLength(25)
@@ -831,7 +835,7 @@ namespace SchoolPro.Infra.Migrations
                             IsActive = true,
                             IsBranch = false,
                             Name = "Matriz da Rede de Ensino 123 de Oliveira 4",
-                            SchoolKey = new Guid("6c9b91d0-3ba5-11ef-9476-0242ac130002")
+                            SchoolSecretKey = "HejGkZngN6A2JzLQ2g5luuye8qSzhmg5"
                         });
                 });
 
@@ -1408,6 +1412,10 @@ namespace SchoolPro.Infra.Migrations
                         .HasColumnType("jsonb")
                         .HasColumnName("json");
 
+                    b.Property<int>("Level")
+                        .HasColumnType("integer")
+                        .HasColumnName("level");
+
                     b.Property<TimeOnly?>("TimedAt")
                         .IsRequired()
                         .HasColumnType("time without time zone")
@@ -1547,10 +1555,6 @@ namespace SchoolPro.Infra.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("access_token_id");
 
-                    b.Property<Guid>("ClientId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("client_id");
-
                     b.Property<DateOnly>("CreatedAt")
                         .HasColumnType("date")
                         .HasColumnName("created_at");
@@ -1593,6 +1597,10 @@ namespace SchoolPro.Infra.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("role_id");
 
+                    b.Property<Guid>("SchoolId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("school_id");
+
                     b.Property<DateOnly?>("UpdatedAt")
                         .HasColumnType("date")
                         .HasColumnName("updated_at");
@@ -1601,9 +1609,9 @@ namespace SchoolPro.Infra.Migrations
 
                     b.HasIndex("AccessTokenId");
 
-                    b.HasIndex("ClientId");
-
                     b.HasIndex("RoleId");
+
+                    b.HasIndex("SchoolId");
 
                     b.ToTable("User", (string)null);
 
@@ -1611,13 +1619,13 @@ namespace SchoolPro.Infra.Migrations
                         new
                         {
                             Id = new Guid("9a150059-614b-47c3-b56f-59deededd8d6"),
-                            ClientId = new Guid("9cf0bfd2-3d70-11ef-a3ab-0242ac1c0002"),
                             CreatedAt = new DateOnly(2024, 11, 3),
                             Email = "marcelo@schoolpro.com",
                             IsActive = true,
                             Name = "Marcelo de Oliveira",
                             Password = "123",
-                            RoleId = new Guid("45533ff6-3ba5-11ef-9476-0242ac130002")
+                            RoleId = new Guid("45533ff6-3ba5-11ef-9476-0242ac130002"),
+                            SchoolId = new Guid("9cf0bfd2-3d70-11ef-a3ab-0242ac1c0002")
                         });
                 });
 
@@ -1893,23 +1901,23 @@ namespace SchoolPro.Infra.Migrations
                         .WithMany()
                         .HasForeignKey("AccessTokenId");
 
-                    b.HasOne("SchoolPro.Core.Entities.Client", "Client")
-                        .WithMany()
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("SchoolPro.Core.Entities.Role", "Role")
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("SchoolPro.Core.Entities.School", "School")
+                        .WithMany()
+                        .HasForeignKey("SchoolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("AccessToken");
 
-                    b.Navigation("Client");
-
                     b.Navigation("Role");
+
+                    b.Navigation("School");
                 });
 
             modelBuilder.Entity("SchoolPro.Core.Entities.Client", b =>
