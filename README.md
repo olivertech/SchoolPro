@@ -7,7 +7,7 @@ Abaixo, seguem as stacks aplicadas ao projeto:
 
 FRONTEND
 
-- Flutterflow - Será todo desenvolvido em plataforma lowcode, em parceria com Alexandre Gois, permitindo agilidade no seu desenvolvimento
+- A tecnologia ainda segue em avaliação
 
 BACKEND
 
@@ -17,6 +17,7 @@ BACKEND
 - Automapper
 - Fluent Validation
 - JWT Authentication
+- Criptografia utilizando algoritmo 'Blowfish Encryption'
 
 BANCO DE DADOS
 
