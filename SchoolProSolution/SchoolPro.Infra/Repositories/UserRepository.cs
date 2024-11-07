@@ -11,16 +11,16 @@
             if (email == null || password == null)
                 return null;
 
-            //CONSIDERAR QUE AS SENHAS FUTURAMENTE SERÃO CRIPTOGRAFADAS E QUE 
-            //PRECISARÁ SER FEITA ESSA OPERAÇÃO DE PEGAR A SENHA RECEBIDA, 
-            //CRIPTOGRAFAR E COMPARAR COM A DO BANCO DE DADOS
-
+            //Recupero o usuário com a senha criptografada no banco
             var user = await _context!.Users!
                         .Include(ur => ur.Role!)
-                        .Where(u => u.Email == email && u.Password == password)
+                        .Where(u => u.Email == email)
                         .FirstOrDefaultAsync();
 
-            return user;
+            //Verifico se a senha fornecida corresponde ao hash armazenado
+            var result = BCrypt.Net.BCrypt.Verify(password, user!.Password);
+
+            return result ? user : null;
         }
     }
 }

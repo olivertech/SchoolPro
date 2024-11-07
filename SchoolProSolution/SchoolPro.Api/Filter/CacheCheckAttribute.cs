@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
-using SchoolPro.Api.Cache;
-
-namespace SchoolPro.Api.Filter
+﻿namespace SchoolPro.Api.Filter
 {
     /// <summary>
     /// Essa classe é um filtro de validação do cache do usuário,
@@ -32,7 +29,7 @@ namespace SchoolPro.Api.Filter
                     {
                         // Caso a session não exista ou esteja inativa por muito tempo,
                         // redirecionar para a tela de login.
-                        context.Result = new RedirectToActionResult("Auth", "Login", null);
+                        context.Result = new RedirectToPageResult("Login");
                     }
                 }
             }
@@ -54,7 +51,6 @@ namespace SchoolPro.Api.Filter
                 return false;
             else
             {
-                //Verifica se o usuário
                 var nowPlusTwenty = DateTime.Now.AddMinutes(20);
                 var invalidSession = session.SessionLastAt.CompareTo(nowPlusTwenty) < 0;
 

@@ -42,45 +42,45 @@
 
         public IDocumentRepository DocumentRepository => _documentRepository ??= new DocumentRepository(_context!);
 
-        public IDocumentTypeRepository DocumentTypeRepository => _documentTypeRepository ?? new DocumentTypeRepository(_context!);
+        public IDocumentTypeRepository DocumentTypeRepository => _documentTypeRepository ??= new DocumentTypeRepository(_context!);
 
-        public IFeatureRepository FeatureRepository => _featureRepository ?? new FeatureRepository(_context!);
+        public IFeatureRepository FeatureRepository => _featureRepository ??= new FeatureRepository(_context!);
 
-        public IFeatureRoleRepository FeatureRoleRepository => _featureRoleRepository ?? new FeatureRoleRepository(_context!);
+        public IFeatureRoleRepository FeatureRoleRepository => _featureRoleRepository ??= new FeatureRoleRepository(_context!);
 
-        public IFeeTypeRepository FeeTypeRepository => _feeTypeRepository ?? new FeeTypeRepository(_context!);
+        public IFeeTypeRepository FeeTypeRepository => _feeTypeRepository ??= new FeeTypeRepository(_context!);
 
-        public ISystemLogRepository SystemLogRepository => _systemLogRepository ?? new SystemLogRepository(_context!);
+        public ISystemLogRepository SystemLogRepository => _systemLogRepository ??= new SystemLogRepository(_context!);
 
-        public IParentRepository ParentRepository => _parentRepository ?? new ParentRepository(_context!);
+        public IParentRepository ParentRepository => _parentRepository ??= new ParentRepository(_context!);
 
-        public IRoleRepository RoleRepository => RoleRepository?? new RoleRepository(_context!);
+        public IRoleRepository RoleRepository => _roleRepository ??= new RoleRepository(_context!);
 
-        public IRoomRepository RoomRepository => _roomRepository?? new RoomRepository(_context!);
+        public IRoomRepository RoomRepository => _roomRepository ??= new RoomRepository(_context!);
 
-        public ISchoolCalendarRepository SchoolCalendarRepository => _schoolCalendarRepository ?? new SchoolCalendarRepository(_context!);
+        public ISchoolCalendarRepository SchoolCalendarRepository => _schoolCalendarRepository ??= new SchoolCalendarRepository(_context!);
 
-        public ISchoolEnrollmentRepository SchoolEnrollmentRepository => _schoolEnrollmentRepository ?? new SchoolEnrollmentRepository(_context!);
+        public ISchoolEnrollmentRepository SchoolEnrollmentRepository => _schoolEnrollmentRepository ??= new SchoolEnrollmentRepository(_context!);
 
-        public ISchoolFeeRepository SchoolFeeRepository => _schoolFeeRepository ?? new SchoolFeeRepository(_context!);
+        public ISchoolFeeRepository SchoolFeeRepository => _schoolFeeRepository ??= new SchoolFeeRepository(_context!);
 
-        public ISchoolRepository SchoolRepository => _schoolRepository ?? new SchoolRepository(_context!);
+        public ISchoolRepository SchoolRepository => _schoolRepository ??= new SchoolRepository(_context!);
 
-        public ISchoolSubjectRepository SchoolSubjectRepository => _schoolSubjectRepository ?? new SchoolSubjectRepository(_context!);
+        public ISchoolSubjectRepository SchoolSubjectRepository => _schoolSubjectRepository ??= new SchoolSubjectRepository(_context!);
 
-        public ISchoolYearRepository SchoolYearRepository => _schoolYearRepository ?? new SchoolYearRepository(_context!);
+        public ISchoolYearRepository SchoolYearRepository => _schoolYearRepository ??= new SchoolYearRepository(_context!);
 
-        public IStudentClassRepository StudentClassRepository => _studentClassRepository ?? new StudentClassRepository(_context!);
+        public IStudentClassRepository StudentClassRepository => _studentClassRepository ??= new StudentClassRepository(_context!);
 
-        public IStudentGradeRepository StudentGradeRepository => _studentGradeRepository ?? new StudentGradeRepository(_context!);
+        public IStudentGradeRepository StudentGradeRepository => _studentGradeRepository ??= new StudentGradeRepository(_context!);
 
-        public IStudentRepository StudentRepository => _studentRepository ?? new StudentRepository(_context!);
+        public IStudentRepository StudentRepository => _studentRepository ??= new StudentRepository(_context!);
 
-        public ITeacherRepository TeacherRepository => _teacherRepository ?? new TeacherRepository(_context!);
+        public ITeacherRepository TeacherRepository => _teacherRepository ??= new TeacherRepository(_context!);
         
-        public ITeacherSchoolSubjectRepository TeacherSchoolSubjectRepository => _teacherSchoolSubjectRepository ?? new TeacherSchoolSubjectRepository(_context!);
+        public ITeacherSchoolSubjectRepository TeacherSchoolSubjectRepository => _teacherSchoolSubjectRepository ??= new TeacherSchoolSubjectRepository(_context!);
 
-        public IUserRepository UserRepository => _userRepository ?? new UserRepository(_context!);
+        public IUserRepository UserRepository => _userRepository ??= new UserRepository(_context!);
 
         public async Task CommitAsync()
         {

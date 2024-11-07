@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using SchoolPro.Api.Cache;
-
-namespace SchoolPro.Api.Controllers
+﻿namespace SchoolPro.Api.Controllers
 {
     public class LoginController : Base.ControllerBase
     {

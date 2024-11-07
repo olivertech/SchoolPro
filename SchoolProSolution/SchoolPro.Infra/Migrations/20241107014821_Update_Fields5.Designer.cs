@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SchoolPro.Infra.Context;
@@ -11,9 +12,11 @@ using SchoolPro.Infra.Context;
 namespace SchoolPro.Infra.Migrations
 {
     [DbContext(typeof(SchoolProDbContext))]
-    partial class SchoolProDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241107014821_Update_Fields5")]
+    partial class Update_Fields5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1629,7 +1632,7 @@ namespace SchoolPro.Infra.Migrations
                             Email = "marcelo@schoolpro.com",
                             IsActive = true,
                             Name = "Marcelo de Oliveira",
-                            Password = "$2a$10$dg0T/t5ElR/EjCdbOW2pm.3GPphHOn3X2.V6WSqpfWDlLdEBgu.yC",
+                            Password = "123",
                             RoleId = new Guid("45533ff6-3ba5-11ef-9476-0242ac130002"),
                             SchoolId = new Guid("9cf0bfd2-3d70-11ef-a3ab-0242ac1c0002")
                         });

@@ -1,6 +1,4 @@
-﻿using System.Net.Http;
-
-namespace SchoolPro.Infra.Repositories
+﻿namespace SchoolPro.Infra.Repositories
 {
     public class AccessTokenRepository : RepositoryAuthorizedBase<AccessToken>, IAccessTokenRepository
     {

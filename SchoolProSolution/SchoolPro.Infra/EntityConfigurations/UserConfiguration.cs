@@ -15,7 +15,7 @@
             //Entity columns
             builder.Property(x => x.Name).HasColumnName("name").HasMaxLength(50).IsRequired();
             builder.Property(x => x.Document).HasColumnName("document").HasMaxLength(11).IsRequired();
-            builder.Property(x => x.Password).HasColumnName("password").HasMaxLength(10).IsRequired();
+            builder.Property(x => x.Password).HasColumnName("password").IsRequired();
             builder.Property(x => x.Email).HasColumnName("email").HasMaxLength(50).IsRequired();
             builder.Property(x => x.PicturePath).HasColumnName("picture_path").HasMaxLength(50).IsRequired(false);
             builder.Property(x => x.SchoolId).HasColumnName("school_id").IsRequired();
@@ -41,7 +41,7 @@
                     Id = Guid.Parse("9a150059-614b-47c3-b56f-59deededd8d6"),
                     Name = "Marcelo de Oliveira",
                     Email = "marcelo@schoolpro.com",
-                    Password = "123",
+                    Password = "$2a$10$dg0T/t5ElR/EjCdbOW2pm.3GPphHOn3X2.V6WSqpfWDlLdEBgu.yC",
                     IsActive = true,
                     Document = "02188285786",
                     SchoolId = Guid.Parse("9cf0bfd2-3d70-11ef-a3ab-0242ac1c0002"),

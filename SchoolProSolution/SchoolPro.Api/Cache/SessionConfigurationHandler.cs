@@ -1,6 +1,4 @@
-﻿using System.Runtime.Caching;
-
-namespace SchoolPro.Api.Cache
+﻿namespace SchoolPro.Api.Cache
 {
     public static class SessionConfigurationHandler
     {
