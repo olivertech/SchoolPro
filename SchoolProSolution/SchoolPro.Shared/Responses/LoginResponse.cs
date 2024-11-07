@@ -10,7 +10,7 @@
         public string? Name { get; set; }
         public string? Email { get; set; }
         public bool IsActive { get; set; }
-        public Role Role { get; set; } = null!;
-        public AccessToken AccessToken { get; set; } = null!;
+        public RoleResponse? Role { get; set; }
+        public AccessTokenResponse? AccessToken { get; set; }
     }
 }

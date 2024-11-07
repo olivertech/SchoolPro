@@ -2,7 +2,7 @@
 {
     public static class JwtAuth
     {
-        public static NewToken GenerateToken(User user, Client client)
+        public static NewToken GenerateToken(User user, string combinedKeys)
         {
             var expirationDate = DateTime.UtcNow.AddMinutes(SharedConfigurations.Minutes);
 
@@ -16,10 +16,8 @@
             {
                 Subject = new ClaimsIdentity(new[]
                 {
-                    new Claim(ClaimTypes.Name, user.Name!.ToString()),
                     new Claim(ClaimTypes.Email, user.Email!.ToString()),
-                    new Claim(ClaimTypes.Role, user.Role!.Name!.ToString()),
-                    new Claim(ClaimTypes.Hash, client.Id!.ToString()),
+                    new Claim(ClaimTypes.Hash, combinedKeys),
                 }),
                 Expires = expirationDate,
                 Issuer = issuer,

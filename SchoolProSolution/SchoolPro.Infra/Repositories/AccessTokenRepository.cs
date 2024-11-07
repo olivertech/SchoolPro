@@ -29,6 +29,7 @@ namespace SchoolPro.Infra.Repositories
                 if(accessToken != null)
                 {
                     _context.AccessTokens.Remove(accessToken);
+                    _context!.SaveChanges();
                 }
             }
         }

@@ -1,4 +1,7 @@
-﻿namespace SchoolPro.Api.Controllers
+﻿using Microsoft.AspNetCore.Authentication;
+using SchoolPro.Api.Cache;
+
+namespace SchoolPro.Api.Controllers
 {
     public class LoginController : Base.ControllerBase
     {
@@ -58,35 +61,46 @@
                     return BadRequest(new { Message = "Request inválido!" });
 
                 //Gera token de acesso
-                AccessToken? userToken = SetAccessToken(client, school, user).Result;
+                AccessToken? userAccessToken = SetAccessToken(client, school, user).Result;
 
-                if (userToken != null)
+                if (userAccessToken != null)
                 {
                     //Insere log
                     await _systemLogHelper!.LogInformation(user.Id, "Login iniciado por " + user.Name + " (" + user.Id + ")");
 
                     //Atualiza o access token do usuário
-                    user.AccessTokenId = userToken.Id;
-                    user.AccessToken = userToken;
+                    user.AccessTokenId = userAccessToken.Id;
+                    user.AccessToken = userAccessToken;
 
                     await _unitOfWork.UserRepository.Update(user);
-
-                    //Prepara o response
-                    var response = _mapper!.Map<LoginResponse>(user);
-
-                    response.Id = user.Id;
-                    response.Role = user!.Role!;
-                    response.AccessToken = userToken;
 
                     _unitOfWork.CommitAsync().Wait();
 
                     //Armazena dados do usuário em session 
-                    HttpContext.Session.SetString("LoggedUserId", user.Id.ToString());
-                    HttpContext.Session.SetString("LoggedSchoolId", school.Id.ToString());
-                    HttpContext.Session.SetString("LoggedClientId", client.Id.ToString());
-                    HttpContext.Session.SetString("ClientSchoolKey", userToken.ClientSchoolKey!.ToString());
+                    SessionConfiguration sessionConfiguration = new SessionConfiguration
+                    {
+                        LoggedUserId = user.Id,
+                        LoggedClientId = client.Id,
+                        LoggedSchoolId = school.Id,
+                        ClientSchoolKey = userAccessToken.ClientSchoolKey!.ToString(),
+                        SessionCreatedAt = DateTime.UtcNow,
+                        SessionLastAt = DateTime.UtcNow,
+                        AccessToken = userAccessToken,
+                    };
+
+                    SessionConfigurationHandler.SaveSessionConfiguration(user!.Id!, sessionConfiguration);
+
+                    //Salvo o Id do usuário em sessão, para permitir recuperar a SessionConfiguration do usuário
+                    HttpContext.Session.SetString("UserId", user.Id.ToString());
 
                     await _systemLogHelper!.LogInformation(user.Id, "Acesso de " + user.Name + " (" + user.Id + ") realizado com sucesso. " + user.Name);
+
+                    //Prepara o response
+                    var response = _mapper!.Map<LoginResponse>(user);
+                    var accessToken = _mapper.Map<AccessTokenResponse>(userAccessToken);
+
+                    response.Id = user.Id;
+                    response.AccessToken = accessToken;
 
                     return Ok(ResponseFactory<LoginResponse>.Success("Acesso realizado com sucesso.", response));
                 }
@@ -108,27 +122,43 @@
         [AllowAnonymous]
         public async Task<IActionResult> Logout()
         {
-            User? user;
-            string? userId = HttpContext.Session.GetString("LoggedUserId");
-
             try
             {
-                if (userId != null)
+                var userId = HttpContext.Session.GetString("UserId");
+
+                if (!string.IsNullOrEmpty(userId))
                 {
-                    user = await _unitOfWork!.UserRepository.GetById(Guid.Parse(userId));
-                    user!.AccessTokenId = null;
+                    SessionConfiguration? session = SessionConfigurationHandler.GetSessionConfiguration(Guid.Parse(userId!));
 
-                    await _unitOfWork!.AccessTokenRepository.DeleteLoggedUserAccessToken(user.Id);
+                    if(session != null)
+                    {
+                        var user = _unitOfWork!.UserRepository.GetById(session.LoggedUserId).Result;
 
-                    //Remove todas as variáveis de sessão do usuário logado
-                    HttpContext.Session.Remove("LoggedUserId");
-                    HttpContext.Session.Remove("LoggedSchoolId");
-                    HttpContext.Session.Remove("LoggedClientId");
-                    HttpContext.Session.Remove("ClientSchoolKey");
+                        if(user != null)
+                        {
+                            user.AccessToken = null;
 
-                    var response = _mapper!.Map<LoginResponse>(user);
+                            await _unitOfWork!.AccessTokenRepository.DeleteLoggedUserAccessToken(user.Id);
 
-                    return Ok(ResponseFactory<LoginResponse>.Success("Usuário deslogado com sucesso.", response));
+                            SessionConfigurationHandler.ClearSessionConfiguration(user!.Id!);
+
+                            HttpContext.Items.Remove("UserId");
+
+                            var response = _mapper!.Map<LoginResponse>(user);
+
+                            _unitOfWork.CommitAsync().Wait();
+
+                            return Ok(ResponseFactory<LoginResponse>.Success("Usuário deslogado com sucesso.", response));
+                        }
+                        else
+                        {
+                            return StatusCode(StatusCodes.Status404NotFound, ResponseFactory<LoginResponse>.Error("Usuário inexistente."));
+                        }
+                    }
+                    else
+                    {
+                        return StatusCode(StatusCodes.Status404NotFound, ResponseFactory<LoginResponse>.Error("Sessão de usuário inexistente."));
+                    }
                 }
                 else
                 {
@@ -141,6 +171,24 @@
                 return BadRequest(new { Message = "Não foi possível realizar o logout!" });
             }
         }
+
+        /// <summary>
+        /// Método que salva em contexto, o documento do usuário
+        /// </summary>
+        /// <param name="user"></param>
+        //private async void SaveDocument(User user)
+        //{
+        //    //Após ter o login confirmado, guarda o documento do usuário.
+        //    var claims = new List<Claim>
+        //    {
+        //        new Claim(ClaimTypes.Name, user.Id.ToString()!)
+        //    };
+
+        //    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+        //    var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+
+        //    await HttpContext.SignInAsync(claimsPrincipal);
+        //}
 
         /// <summary>
         /// Método responsável por criar os dados de acesso,
@@ -158,7 +206,7 @@
             try
             {
                 //Gera um novo token de acesso
-                var newToken = JwtAuth.GenerateToken(user, client);
+                var newToken = JwtAuth.GenerateToken(user, combinedKeys);
 
                 AccessToken newUserToken = new AccessToken
                 {
@@ -190,13 +238,21 @@
 
                     await _unitOfWork.AccessTokenRepository.Update(result, combinedKeys);
 
+                    var sessionConfiguration = SessionConfigurationHandler.GetSessionConfiguration(user.Id);
+
+                    if (sessionConfiguration != null)
+                    {
+                        sessionConfiguration.AccessToken = result;
+                        SessionConfigurationHandler.UpdateSessionConfiguration(user.Id, sessionConfiguration);
+                    }
+
                     accessToken = result;
                 }
             }
             catch (Exception ex)
             {
                 _logger!.LogError(ex, "SetAccessToken");
-                throw ex;
+                throw;
             }
 
             return accessToken!;

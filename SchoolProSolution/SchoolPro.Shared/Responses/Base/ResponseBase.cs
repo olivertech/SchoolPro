@@ -2,6 +2,6 @@
 {
     public class ResponseBase
     {
-        public Guid? ClientSchoolKey { get; set; }
+        public string? ClientSchoolKey { get; set; }
     }
 }

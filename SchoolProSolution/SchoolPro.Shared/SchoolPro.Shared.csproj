@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Configurations\" />
     <Folder Include="Helpers\" />
     <Folder Include="Properties\" />
   </ItemGroup>

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using SchoolPro.Api.Auth;
+using SchoolPro.Api.Filter;
 using System.Text;
 
 namespace SchoolPro.Api
@@ -11,6 +12,21 @@ namespace SchoolPro.Api
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            //====================================
+            // Configuração da Session do sistema
+            //====================================
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(20); // Define a duração da sessão
+                options.Cookie.HttpOnly = true; // Aumenta a segurança
+                options.Cookie.IsEssential = true; // Necessário para que a sessão funcione
+            });
+
+            //====================================
+            // Adiciona o serviço In-Memory Cache
+            //====================================
+            builder.Services.AddMemoryCache();
 
             //=================================================
             // Configura autenticação por token gerada via JWT
@@ -95,6 +111,14 @@ namespace SchoolPro.Api
             builder.Services.AddRepositoryDependenciesInjection(builder.Configuration);
             builder.Services.AddValidatorDependenciesInjection();
 
+            //================================================================
+            // Adiciona globalmente o filtro de validação do cache do usuário 
+            //================================================================
+            builder.Services.AddControllersWithViews(options =>
+            {
+                options.Filters.Add<CacheCheckAttribute>();
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -103,8 +127,9 @@ namespace SchoolPro.Api
                 app.UseSwagger();
                 app.UseSwaggerUI();
                 app.UseDeveloperExceptionPage();
-                app.UseSession();
             }
+
+            app.UseSession();
 
             app.UseHttpsRedirection();
 
