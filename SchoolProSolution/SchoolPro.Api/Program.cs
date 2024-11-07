@@ -1,10 +1,3 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
-using SchoolPro.Api.Auth;
-using SchoolPro.Api.Filter;
-using System.Text;
-
 namespace SchoolPro.Api
 {
     public class Program

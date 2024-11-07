@@ -20,3 +20,6 @@ global using Microsoft.AspNetCore.Mvc.Filters;
 global using SchoolPro.Api.Cache;
 global using Microsoft.AspNetCore.Authentication;
 global using System.Runtime.Caching;
+global using Microsoft.AspNetCore.Authentication.JwtBearer;
+global using Microsoft.OpenApi.Models;
+global using SchoolPro.Api.Filter;

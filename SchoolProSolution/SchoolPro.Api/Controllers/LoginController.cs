@@ -170,24 +170,6 @@
         }
 
         /// <summary>
-        /// Método que salva em contexto, o documento do usuário
-        /// </summary>
-        /// <param name="user"></param>
-        //private async void SaveDocument(User user)
-        //{
-        //    //Após ter o login confirmado, guarda o documento do usuário.
-        //    var claims = new List<Claim>
-        //    {
-        //        new Claim(ClaimTypes.Name, user.Id.ToString()!)
-        //    };
-
-        //    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-        //    var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
-
-        //    await HttpContext.SignInAsync(claimsPrincipal);
-        //}
-
-        /// <summary>
         /// Método responsável por criar os dados de acesso,
         /// com novo token gerado para o usuário
         /// </summary>
